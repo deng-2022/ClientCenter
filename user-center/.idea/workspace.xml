@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b35a969-b326-48cb-b7cb-4fac97c8ff21" name="Changes" comment="解散队伍&#10;获取当前队伍队伍信息&#10;获取已加入的队伍信息&#10;基本完成">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/banner.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../myapp/src/app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../myapp/src/app.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../myapp/src/pages/user/Login/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../myapp/src/pages/user/Login/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../myapp/src/plugins/globalRequest.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../myapp/src/plugins/globalRequest.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/config/MyInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/config/MyInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/config/WebConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/job/PreCacheJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/job/PreCacheJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -349,7 +344,7 @@
       <workItem from="1685762411863" duration="2156000" />
       <workItem from="1685977075126" duration="618000" />
       <workItem from="1686110535281" duration="793000" />
-      <workItem from="1686205632900" duration="5578000" />
+      <workItem from="1686205632900" duration="5911000" />
     </task>
     <task id="LOCAL-00001" summary="redission实现分布式锁, 解决了多台服务器中, 只能由一台服务器成功抢到锁并缓存用户信息">
       <created>1681828259232</created>
