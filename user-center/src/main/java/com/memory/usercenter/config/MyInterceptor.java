@@ -1,5 +1,6 @@
 package com.memory.usercenter.config;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -10,6 +11,7 @@ import java.util.Date;
 /**
  * 自定义拦截器类
  */
+@Configuration
 public class MyInterceptor implements HandlerInterceptor {// 实现HandlerInterceptor接口
 
     /**

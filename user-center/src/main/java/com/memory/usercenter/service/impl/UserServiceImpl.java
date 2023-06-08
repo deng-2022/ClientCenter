@@ -320,7 +320,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         userPage = userMapper.selectPage(new Page<>(currentPage, pageSize), lqw);
         // 将查询到的用户信息写到缓存中
         try {
-            redisTemplate.opsForValue().set(redisKey, userPage, 30000, TimeUnit.MILLISECONDS);
+            redisTemplate.opsForValue().set(redisKey, userPage, 24, TimeUnit.HOURS);
         } catch (Exception e) {
             log.error("redis set key error", e);
         }
@@ -375,6 +375,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public List<User> matchUsers(long num, HttpServletRequest request) {
         // 1.获取登录用户标签(json字符串 -> List列表)
         User loginUser = getLoginUser(request);
+
+        // 拿到当前登录用户的key(每个用户都有各自对应的key)
+        String redisKey = String.format("memory:user:match:%s", loginUser.getId());
+        // 查缓存
+        List<User> userList = (List<User>) redisTemplate.opsForValue().get(redisKey);
+        // 缓存命中, 则返回用户信息
+        if (userList != null) {
+            return userList;
+        }
+
+        // 缓存未命中, 查询数据库
         String tags = loginUser.getTags();
         Gson gson = new Gson();
         List<String> tagList = gson.fromJson(tags, new TypeToken<List<String>>() {
@@ -385,7 +396,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         queryWrapper.select("id", "tags");
         // 2.遍历所有查询到的用户, 依次进行标签比较, 并存储到容器中
         // 2.1.查询到所有用户
-        List<User> userList = this.list(queryWrapper);
+        userList = this.list(queryWrapper);
         // 2.2.使用SortedMap容器
         List<Pair<User, Long>> userDistanceList = new ArrayList<>();
         for (User user : userList) {
@@ -425,6 +436,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         List<User> finalUserList = new ArrayList<>();
         for (Long userId : userIdList) {
             finalUserList.add(userIdUserListMap.get(userId).get(0));
+        }
+
+        // 将匹配到的用户信息写到缓存中
+        try {
+            redisTemplate.opsForValue().set(redisKey, finalUserList, 6, TimeUnit.HOURS);
+        } catch (Exception e) {
+            log.error("redis set key error", e);
         }
 
         // 7.返回匹配用户列表

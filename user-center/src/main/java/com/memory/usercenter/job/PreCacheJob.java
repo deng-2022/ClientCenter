@@ -34,8 +34,8 @@ public class PreCacheJob {
     // 重点用户id(提供推送的用户id)
     private final List<Long> mainUserList = List.of(1L);
 
-    // 每天执行，预热推荐用户
-    @Scheduled(cron = "0 * * * *  *")   //自己设置时间测试
+    // 每天00:00执行，预热推荐用户, 缓存保存
+//    @Scheduled(cron = "0 0 0 * * ? ")   //自己设置时间测试
     public void doCacheRecommendUser() {
         // 设置分布式锁
         RLock lock = redissonClient.getLock("memory:preCacheJob:doCache:lock");
@@ -52,7 +52,7 @@ public class PreCacheJob {
                     String redisKey = String.format("memory:user:recommend:%s", userId);
                     // 写缓存,30s过期
                     try {
-                        redisTemplate.opsForValue().set(redisKey, userPage, 30000, TimeUnit.MILLISECONDS);
+                        redisTemplate.opsForValue().set(redisKey, userPage, 24, TimeUnit.HOURS);
                     } catch (Exception e) {
                         log.error("redis set key error", e);
                     }
