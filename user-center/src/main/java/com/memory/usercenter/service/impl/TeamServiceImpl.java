@@ -247,7 +247,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
 
         // 5.根据最大人数查询
         Integer maxNum = team.getMaxNum();
-        if (maxNum >= 2 && maxNum <= 20)
+        if (maxNum != null && maxNum >= 2 && maxNum <= 20)
             tqw.gt("max_num", maxNum - 1);
 
         // 6.排除当前用户已加入的队伍

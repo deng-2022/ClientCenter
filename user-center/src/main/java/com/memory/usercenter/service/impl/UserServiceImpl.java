@@ -158,12 +158,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public String userLogout(HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute(USER_LOGIN_STATE);
         // 判断对象是否为空
-        if (Optional.ofNullable(user).isPresent())
-//        if (user == null)
+//        if (Optional.ofNullable(user).isPresent())
+        if (user == null)
             throw new BusinessException(NULL_ERROR);
 
         // 移除session
-        return "注销成功";
+        return "退出登录成功";
     }
 
     /**
@@ -200,6 +200,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         Long id = currentUser.getId();
 
         // 查询数据库, 获取最新信息, 而非登录时记录的信息
+        User byId = getById(id);
         return getById(id);
     }
 
