@@ -12,6 +12,8 @@ import com.memory.usercenter.model.entity.User;
 import com.memory.usercenter.service.UserService;
 import com.memory.usercenter.mapper.UserMapper;
 import com.memory.usercenter.utils.AlgorithmUtils;
+import com.memory.usercenter.utils.ValidateCodeUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.jboss.marshalling.Pair;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -34,6 +36,7 @@ import static com.memory.usercenter.constant.UserConstant.*;
  * 2023-03-08 16:07:41
  */
 @Service
+@Slf4j
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
     @Resource
     private UserMapper userMapper;
@@ -132,8 +135,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
         QueryWrapper<User> qw = new QueryWrapper<>();
         qw.eq("user_account", userAccount).eq("user_password", encryptPassword);
-//        User one = this.getOne(qw);
-        User one = userMapper.selectOne(qw);
+        User one = this.getOne(qw);
+//        User one = userMapper.selectOne(qw);
 
         // 1.5.1.用户未注册(包含了MP自带的逻辑删除校验)
         if (one == null) throw new BusinessException(NOT_REGISTER);
@@ -149,6 +152,61 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     /**
+     * 获取验证码
+     *
+     * @param phoneNumber 电话号码
+     * @return 验证码
+     */
+    @Override
+    public String getCode(String phoneNumber) {
+        // 1.校验电话号码
+        String pattern = "1\\d{10}";
+        if (StringUtils.isBlank(phoneNumber) || !Pattern.matches(pattern, phoneNumber))
+            throw new BusinessException(PARMS_ERROR, "电话号码有误");
+        // 2.判断该用户是否已注册
+        QueryWrapper<User> uqw = new QueryWrapper<>();
+        uqw.eq("phone", phoneNumber);
+        User user = getOne(uqw);
+        // 3.未注册
+        if (user == null) throw new BusinessException(NOT_REGISTER);
+        // 4.已注册 随机生成4位验证码并返回
+        return ValidateCodeUtils.generateValidateCode(4).toString();
+    }
+
+    /**
+     * 验证码登录
+     *
+     * @param phoneNumber 电话号码
+     * @param code        验证码
+     * @return 脱敏用户信息
+     */
+    @Override
+    public User codeLogin(String phoneNumber, String code, String rightCode, HttpServletRequest request) {
+        // 1.校验验证码
+        if (!code.equals(rightCode)) throw new BusinessException(CODE_ERROR);
+
+        // 2.校验电话号码
+        String pattern = "1\\d{10}";
+        if (StringUtils.isBlank(phoneNumber) || !Pattern.matches(pattern, phoneNumber))
+            throw new BusinessException(PARMS_ERROR, "电话号码有误");
+
+        // 3.获取用户信息
+        QueryWrapper<User> qw = new QueryWrapper<>();
+        qw.eq("phone", phoneNumber);
+        User one = this.getOne(qw);
+        if (one == null) throw new BusinessException(UPDATE_ERROR);
+
+        // 4.脱敏用户信息
+        User safetyUser = getSafetyUser(one);
+
+        // 5.记录用户登录态
+        request.getSession().setAttribute(USER_LOGIN_STATE, safetyUser);
+
+        // 6.返回脱敏用户信息
+        return safetyUser;
+    }
+
+    /**
      * 用户注销
      *
      * @param request request
@@ -159,8 +217,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         User user = (User) request.getSession().getAttribute(USER_LOGIN_STATE);
         // 判断对象是否为空
 //        if (Optional.ofNullable(user).isPresent())
-        if (user == null)
-            throw new BusinessException(NULL_ERROR);
+        if (user == null) throw new BusinessException(NULL_ERROR);
 
         // 移除session
         return "退出登录成功";
@@ -235,8 +292,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
         List<User> userList = userMapper.selectList(uqw);
         // 用户为空, 返回空列表
-        if (tagNameList.size() == 0)
-            return userList;
+        if (tagNameList.size() == 0) return userList;
 
         Gson gson = new Gson();
         // 2.从查询到的用户中, 根据标签筛选出符合的用户, 组合成列表并返回
@@ -276,8 +332,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
         // 1.3.非管理员, 就执行普通用户修改用户方法
         // 根据传回来的id, 判断当前用户是否为要修改的用户
-        if (!loginUser.getId().equals(user.getId()))
-            throw new BusinessException(NO_AUTH);
+        if (!loginUser.getId().equals(user.getId())) throw new BusinessException(NO_AUTH);
 
         userMapper.updateById(user);
         return "修改信息成功";
@@ -310,23 +365,22 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         User loginUser = getLoginUser(request);
         // 拿到当前登录用户的key(每个用户都有各自对应的key)
         String redisKey = String.format("memory:user:recommend:%s", loginUser.getId());
-        // 查缓存
-        Page<User> userPage = (Page<User>) redisTemplate.opsForValue().get(redisKey);
-        // 缓存命中, 则返回用户信息
-        if (userPage != null) {
-            return userPage;
-        }
+//        // 查缓存
+//        Page<User> userPage = (Page<User>) redisTemplate.opsForValue().get(redisKey);
+//        // 缓存命中, 则返回用户信息
+//        if (userPage != null) {
+//            return userPage;
+//        }
         // 缓存未命中, 查询数据库
         LambdaQueryWrapper<User> lqw = new LambdaQueryWrapper<>();
-        userPage = userMapper.selectPage(new Page<>(currentPage, pageSize), lqw);
-        // 将查询到的用户信息写到缓存中
-        try {
-            redisTemplate.opsForValue().set(redisKey, userPage, 24, TimeUnit.HOURS);
-        } catch (Exception e) {
-            log.error("redis set key error", e);
-        }
+        //        // 将查询到的用户信息写到缓存中
+//        try {
+//            redisTemplate.opsForValue().set(redisKey, userPage, 24, TimeUnit.HOURS);
+//        } catch (Exception e) {
+//            log.error("redis set key error", e);
+//        }
         // 返回用户数据
-        return userPage;
+        return userMapper.selectPage(new Page<>(currentPage, pageSize), lqw);
     }
 
     /**
@@ -418,10 +472,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
 
         // 3.按编辑距离由小到大排序
-        List<Pair<User, Long>> sortedUserDistanceList = userDistanceList.stream()
-                .sorted((a, b) -> (int) (a.getB() - b.getB()))
-                .limit(num)
-                .collect(Collectors.toList());
+        List<Pair<User, Long>> sortedUserDistanceList = userDistanceList.stream().sorted((a, b) -> (int) (a.getB() - b.getB())).limit(num).collect(Collectors.toList());
 
         // 4.有顺序的userID列表
         List<Long> userIdList = sortedUserDistanceList.stream().map(pair -> pair.getA().getId()).collect(Collectors.toList());
@@ -429,9 +480,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         // 5.根据id查询user完整信息
         QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
         userQueryWrapper.in("id", userIdList);
-        Map<Long, List<User>> userIdUserListMap = this.list(userQueryWrapper).stream()
-                .map(this::getSafetyUser)
-                .collect(Collectors.groupingBy(User::getId));
+        Map<Long, List<User>> userIdUserListMap = this.list(userQueryWrapper).stream().map(this::getSafetyUser).collect(Collectors.groupingBy(User::getId));
 
         // 6.因为上面查询打乱了顺序，这里根据上面有序的userId列表赋值
         List<User> finalUserList = new ArrayList<>();

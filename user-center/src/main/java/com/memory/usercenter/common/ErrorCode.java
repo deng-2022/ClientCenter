@@ -14,6 +14,7 @@ public enum ErrorCode {
     NOT_LOGIN(40003, "未登录", ""),
     NOT_REGISTER(40004, "未注册", ""),
     NO_AUTH(40005, "无权限", ""),
+    CODE_ERROR(40006, "验证码错误", ""),
     SYSTEM_ERROR(10000, "系统内部异常", "");
 
     /**

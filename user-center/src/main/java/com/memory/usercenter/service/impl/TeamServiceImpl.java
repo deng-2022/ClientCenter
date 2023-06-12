@@ -56,13 +56,11 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
     public String teamAdd(TeamAdd team, HttpServletRequest request) {
         // 1.是否登录，未登录不允许创建
         User loginUser = getLoginUser(request);
-        if (loginUser == null)
-            throw new BusinessException(ErrorCode.NOT_LOGIN);
+        if (loginUser == null) throw new BusinessException(ErrorCode.NOT_LOGIN);
 
         // 2.队伍人数 > 2 且 <= 20
         Integer maxNum = team.getMaxNum();
-        if (maxNum < 2 || maxNum > 20)
-            throw new BusinessException(ErrorCode.PARMS_ERROR, "队伍人数不符合要求");
+        if (maxNum < 2 || maxNum > 20) throw new BusinessException(ErrorCode.PARMS_ERROR, "队伍人数不符合要求");
 
         // 3.队伍标题 <= 20
         String name = team.getName();
@@ -77,15 +75,13 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
         // 5.status 是否公开（int）不传默认为 0（公开）
         int status = Optional.ofNullable(team.getStatus()).orElse(0);
         TeamStatusEnum statusEnum = TeamStatusEnum.getEnumByValue(status);
-        if (statusEnum == null)
-            throw new BusinessException(ErrorCode.PARMS_ERROR, "队伍状态不符合要求");
+        if (statusEnum == null) throw new BusinessException(ErrorCode.PARMS_ERROR, "队伍状态不符合要求");
 
         // 6.校验队伍密码
         String password = team.getPassword();
         // 6.1.如果队伍非加密, 则不允许设置密码
         if (statusEnum.getValue() != 2) {
-            if (StringUtils.isNotBlank(password))
-                throw new BusinessException(ErrorCode.PARMS_ERROR, "队伍密码不符合要求");
+            if (StringUtils.isNotBlank(password)) throw new BusinessException(ErrorCode.PARMS_ERROR, "队伍密码不符合要求");
         }
 
         // 6.2.如果队伍加密, 一定要有密码, 且密码 <= 32
@@ -96,16 +92,14 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
 
         // 7.当前时间 > 超时时间
         Date expireTime = team.getExpireTime();
-        if (new Date().after(expireTime))
-            throw new BusinessException(ErrorCode.PARMS_ERROR, "超时时间不符合要求");
+        if (new Date().after(expireTime)) throw new BusinessException(ErrorCode.PARMS_ERROR, "超时时间不符合要求");
 
         // 8.校验用户已创建队伍数量(最多创建 5 个队伍)
         Long userId = loginUser.getId();
         QueryWrapper<Team> lqw = new QueryWrapper<>();
         lqw.eq("user_id", userId);
         long count = this.count(lqw);
-        if (count >= 5)
-            throw new BusinessException(ErrorCode.PARMS_ERROR, "该用户创建队伍数量超出限制");
+        if (count >= 5) throw new BusinessException(ErrorCode.PARMS_ERROR, "该用户创建队伍数量超出限制");
 
         Team addTeam = new Team();
         BeanUtils.copyProperties(team, addTeam);
@@ -151,8 +145,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
     public String teamUpdate(TeamUpdate team, HttpServletRequest request) {
         // 校验是否登录
         User loginUser = getLoginUser(request);
-        if (loginUser == null)
-            throw new BusinessException(ErrorCode.NOT_LOGIN);
+        if (loginUser == null) throw new BusinessException(ErrorCode.NOT_LOGIN);
 
         // 1.校验修改权限(只有管理员或队长可以修改)
         if (!loginUser.getId().equals(team.getUserId()) && !isAdmin(loginUser))
@@ -160,12 +153,10 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
 
         // 2.判断队伍是否存在
         Long teamId = team.getId();
-        if (teamId == null || teamId < 0)
-            throw new BusinessException(ErrorCode.PARMS_ERROR);
+        if (teamId == null || teamId < 0) throw new BusinessException(ErrorCode.PARMS_ERROR);
 
         Team currentTeam = this.getById(teamId);
-        if (currentTeam == null)
-            throw new BusinessException(ErrorCode.UPDATE_ERROR, "该队伍不存在");
+        if (currentTeam == null) throw new BusinessException(ErrorCode.UPDATE_ERROR, "该队伍不存在");
 
         // 3.校验队伍名
         String name = team.getName();
@@ -180,15 +171,13 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
         // 5.校验队伍状态
         Integer status = team.getStatus();
         TeamStatusEnum statusEnum = TeamStatusEnum.getEnumByValue(status);
-        if (statusEnum == null)
-            throw new BusinessException(ErrorCode.PARMS_ERROR, "队伍状态不符合要求");
+        if (statusEnum == null) throw new BusinessException(ErrorCode.PARMS_ERROR, "队伍状态不符合要求");
 
         // 6.校验队伍密码
         String password = team.getPassword();
         // 6.1.如果队伍非加密, 则不允许设置密码
         if (!TeamStatusEnum.SECRET.equals(statusEnum)) {
-            if (StringUtils.isNotBlank(password))
-                throw new BusinessException(ErrorCode.PARMS_ERROR, "队伍密码不符合要求");
+            if (StringUtils.isNotBlank(password)) throw new BusinessException(ErrorCode.PARMS_ERROR, "队伍密码不符合要求");
         }
 
         // 6.2.如果队伍加密, 一定要有密码, 且密码 <= 32
@@ -202,8 +191,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
         BeanUtils.copyProperties(team, updateTeam);
 
         boolean update = this.updateById(updateTeam);
-        if (!update)
-            throw new BusinessException(ErrorCode.PARMS_ERROR, "修改队伍失败");
+        if (!update) throw new BusinessException(ErrorCode.PARMS_ERROR, "修改队伍失败");
 
         return "修改信息成功";
     }
@@ -219,36 +207,30 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
     public Page<Team> teamList(TeamQuery team, HttpServletRequest request) {
         // 登录校验
         User loginUser = getLoginUser(request);
-        if (loginUser == null)
-            throw new BusinessException(ErrorCode.NOT_LOGIN);
+        if (loginUser == null) throw new BusinessException(ErrorCode.NOT_LOGIN);
 
         QueryWrapper<Team> tqw = new QueryWrapper<>();
 
         // 1.根据队伍状态查询
         Integer status = team.getStatus();
         TeamStatusEnum statusEnum = TeamStatusEnum.getEnumByValue(status);
-        if (statusEnum != null)
-            tqw.eq("status", status);
+        if (statusEnum != null) tqw.eq("status", status);
 
         // 2.根据队伍名查询
         String name = team.getName();
-        if (StringUtils.isNotEmpty(name) && name.length() < 20)
-            tqw.like("name", name);
+        if (StringUtils.isNotEmpty(name) && name.length() < 20) tqw.like("name", name);
 
         // 3.根据队伍描述查询
         String description = team.getDescription();
-        if (StringUtils.isNotEmpty(description) && description.length() > 512)
-            tqw.like("description", description);
+        if (StringUtils.isNotEmpty(description) && description.length() > 512) tqw.like("description", description);
 
         // 4.根据队长id查询
         Long userId = team.getUserId();
-        if (userId != null)
-            tqw.eq("user_id", userId);
+        if (userId != null) tqw.eq("user_id", userId);
 
         // 5.根据最大人数查询
         Integer maxNum = team.getMaxNum();
-        if (maxNum != null && maxNum >= 2 && maxNum <= 20)
-            tqw.gt("max_num", maxNum - 1);
+        if (maxNum != null && maxNum >= 2 && maxNum <= 20) tqw.gt("max_num", maxNum - 1);
 
         // 6.排除当前用户已加入的队伍
         QueryWrapper<UserTeam> utqw = new QueryWrapper<>();
@@ -261,8 +243,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
 
         // 7.分页查询
         Page<Team> teamPage = this.page(new Page<>(1, 5), tqw);
-        if (teamPage == null)
-            throw new BusinessException(ErrorCode.UPDATE_ERROR);
+        if (teamPage == null) throw new BusinessException(ErrorCode.UPDATE_ERROR);
 
         return teamPage;
     }
@@ -279,23 +260,19 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
     public String joinTeam(TeamJoin team, HttpServletRequest request) {
         // 1.登录校验
         User loginUser = getLoginUser(request);
-        if (loginUser == null)
-            throw new BusinessException(ErrorCode.NOT_LOGIN);
+        if (loginUser == null) throw new BusinessException(ErrorCode.NOT_LOGIN);
 
         // 2.校验队伍是否存在
         Long teamId = team.getId();
-        if (teamId == null || teamId < 0)
-            throw new BusinessException(ErrorCode.PARMS_ERROR);
+        if (teamId == null || teamId < 0) throw new BusinessException(ErrorCode.PARMS_ERROR);
 
         Team currentTeam = this.getById(teamId);
-        if (currentTeam == null)
-            throw new BusinessException(ErrorCode.UPDATE_ERROR, "该队伍不存在");
+        if (currentTeam == null) throw new BusinessException(ErrorCode.UPDATE_ERROR, "该队伍不存在");
 
         // 3.校验状态
         Integer status = team.getStatus();
         TeamStatusEnum statusEnum = TeamStatusEnum.getEnumByValue(status);
-        if (statusEnum == null)
-            throw new BusinessException(ErrorCode.PARMS_ERROR, "队伍状态不符合要求");
+        if (statusEnum == null) throw new BusinessException(ErrorCode.PARMS_ERROR, "队伍状态不符合要求");
 
         // 4.加入加密队伍必须输入密码且必须是正确的密码
         if (TeamStatusEnum.SECRET.equals(statusEnum)) {
@@ -318,27 +295,23 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
         }
 
         // 4.3.不能加入私有队伍
-        if (TeamStatusEnum.PRIVATE.equals(statusEnum))
-            throw new BusinessException(ErrorCode.PARMS_ERROR, "不能主动加入私有队伍");
+        if (TeamStatusEnum.PRIVATE.equals(statusEnum)) throw new BusinessException(ErrorCode.PARMS_ERROR, "不能主动加入私有队伍");
 
         // 5.最多加入5个队伍
         QueryWrapper<UserTeam> utqw = new QueryWrapper<>();
         Long userId = loginUser.getId();
         utqw.eq("user_id", userId);
         long count = userTeamService.count(utqw);
-        if (count >= 5)
-            throw new BusinessException(ErrorCode.PARMS_ERROR, "该用户加入队伍已达上限");
+        if (count >= 5) throw new BusinessException(ErrorCode.PARMS_ERROR, "该用户加入队伍已达上限");
 
         // 6.不能重复加入已加入的队伍
         utqw.eq("team_id", team.getId());
         count = userTeamService.count(utqw);
-        if (count > 0)
-            throw new BusinessException(ErrorCode.PARMS_ERROR, "您已在该队伍中");
+        if (count > 0) throw new BusinessException(ErrorCode.PARMS_ERROR, "您已在该队伍中");
 
         // 7.不能加入满员的队伍
         Integer joinNum = team.getJoinNum();
-        if (joinNum >= team.getMaxNum())
-            throw new BusinessException(ErrorCode.PARMS_ERROR, "该队伍已满员");
+        if (joinNum >= team.getMaxNum()) throw new BusinessException(ErrorCode.PARMS_ERROR, "该队伍已满员");
 
         // 8.更新team表队伍成员数量
         UpdateWrapper<Team> tuw = new UpdateWrapper<>();
@@ -353,8 +326,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
 
         boolean saveUserTeam = userTeamService.save(userTeam);
 
-        if (!updateTeam || !saveUserTeam)
-            throw new BusinessException(ErrorCode.UPDATE_ERROR, "用户加入队伍失败");
+        if (!updateTeam || !saveUserTeam) throw new BusinessException(ErrorCode.UPDATE_ERROR, "用户加入队伍失败");
 
         return "加入队伍成功";
     }
@@ -371,28 +343,23 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
     public String quitTeam(TeamQuit team, HttpServletRequest request) {
         // 1.校验登录
         User loginUser = getLoginUser(request);
-        if (loginUser == null)
-            throw new BusinessException(ErrorCode.NOT_LOGIN);
+        if (loginUser == null) throw new BusinessException(ErrorCode.NOT_LOGIN);
 
         // 2.校验队伍是否存在
         Long teamId = team.getId();
-        if (teamId == null || teamId < 0)
-            throw new BusinessException(ErrorCode.PARMS_ERROR);
+        if (teamId == null || teamId < 0) throw new BusinessException(ErrorCode.PARMS_ERROR);
 
         Team currentTeam = this.getById(teamId);
-        if (currentTeam == null)
-            throw new BusinessException(ErrorCode.UPDATE_ERROR, "该队伍不存在");
+        if (currentTeam == null) throw new BusinessException(ErrorCode.UPDATE_ERROR, "该队伍不存在");
 
         // 3.校验用户状态
         Integer userStatus = loginUser.getUserStatus();
-        if (userStatus == 1)
-            throw new BusinessException(ErrorCode.NO_AUTH, "该账号已被封");
+        if (userStatus == 1) throw new BusinessException(ErrorCode.NO_AUTH, "该账号已被封");
 
         // 4.校验队伍剩余人数
         Integer joinNum = team.getJoinNum();
         // 4.1.系统错误
-        if (joinNum - 1 < 0)
-            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "队伍人数为空");
+        if (joinNum - 1 < 0) throw new BusinessException(ErrorCode.SYSTEM_ERROR, "队伍人数为空");
 
         // 4.2.队伍人数为空
         if (joinNum - 1 == 0) {
@@ -400,13 +367,11 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
             QueryWrapper<UserTeam> uqw = new QueryWrapper<>();
             uqw.eq("team_id", teamId);
             boolean userTeamRemove = userTeamService.remove(uqw);
-            if (!userTeamRemove)
-                throw new BusinessException(ErrorCode.UPDATE_ERROR);
+            if (!userTeamRemove) throw new BusinessException(ErrorCode.UPDATE_ERROR);
 
             // 4.2.2.删除team记录
             boolean teamRemove = this.removeById(teamId);
-            if (!teamRemove)
-                throw new BusinessException(ErrorCode.UPDATE_ERROR);
+            if (!teamRemove) throw new BusinessException(ErrorCode.UPDATE_ERROR);
         }
 
         // 4.3.队伍人数未空
@@ -415,15 +380,13 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
             UpdateWrapper<Team> tuw = new UpdateWrapper<>();
             tuw.eq("id", teamId).set("join_num", --joinNum);
             boolean updateNum = this.update(tuw);
-            if (!updateNum)
-                throw new BusinessException(ErrorCode.UPDATE_ERROR);
+            if (!updateNum) throw new BusinessException(ErrorCode.UPDATE_ERROR);
 
             // 6.删除user_team记录
             QueryWrapper<UserTeam> uqw = new QueryWrapper<>();
             uqw.eq("team_id", teamId);
             boolean userTeamRemove = userTeamService.remove(uqw);
-            if (!userTeamRemove)
-                throw new BusinessException(ErrorCode.UPDATE_ERROR);
+            if (!userTeamRemove) throw new BusinessException(ErrorCode.UPDATE_ERROR);
 
             // 7.校验用户为队长(传位)
             if (team.getUserId().equals(loginUser.getId())) {
@@ -438,15 +401,13 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
                 UpdateWrapper<Team> utuw = new UpdateWrapper<>();
                 utuw.eq("id", teamId).set("user_id", userId);
                 boolean updateUser = this.update(utuw);
-                if (!updateUser)
-                    throw new BusinessException(ErrorCode.UPDATE_ERROR);
+                if (!updateUser) throw new BusinessException(ErrorCode.UPDATE_ERROR);
 
                 // 7.3.删除原队长
                 utqw = new QueryWrapper<>();
                 utqw.eq("user_id", team.getUserId());
                 boolean remove = userTeamService.remove(utqw);
-                if (!remove)
-                    throw new BusinessException(ErrorCode.UPDATE_ERROR);
+                if (!remove) throw new BusinessException(ErrorCode.UPDATE_ERROR);
             }
         }
 
@@ -466,22 +427,18 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
     public String deleteTeam(TeamDelete team, HttpServletRequest request) {
         // 1.校验登录
         User loginUser = getLoginUser(request);
-        if (loginUser == null)
-            throw new BusinessException(ErrorCode.NOT_LOGIN);
+        if (loginUser == null) throw new BusinessException(ErrorCode.NOT_LOGIN);
 
         // 2.检验队伍是否存在
         Long teamId = team.getId();
-        if (teamId == null || teamId < 0)
-            throw new BusinessException(ErrorCode.PARMS_ERROR);
+        if (teamId == null || teamId < 0) throw new BusinessException(ErrorCode.PARMS_ERROR);
 
         Team currentTeam = this.getById(teamId);
-        if (currentTeam == null)
-            throw new BusinessException(ErrorCode.UPDATE_ERROR, "该队伍不存在");
+        if (currentTeam == null) throw new BusinessException(ErrorCode.UPDATE_ERROR, "该队伍不存在");
 
         // 3.校验用户状态
         Integer userStatus = loginUser.getUserStatus();
-        if (userStatus == 1)
-            throw new BusinessException(ErrorCode.NO_AUTH, "该账号已被封");
+        if (userStatus == 1) throw new BusinessException(ErrorCode.NO_AUTH, "该账号已被封");
 
         // 4.校验权限(是否为队长或管理员)
         if (!team.getUserId().equals(loginUser.getId()) && !isAdmin(loginUser))
@@ -490,8 +447,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
         // 5.校验队伍状态
         Integer status = team.getStatus();
         TeamStatusEnum statusEnum = TeamStatusEnum.getEnumByValue(status);
-        if (statusEnum == null)
-            throw new BusinessException(ErrorCode.PARMS_ERROR, "队伍状态不符合要求");
+        if (statusEnum == null) throw new BusinessException(ErrorCode.PARMS_ERROR, "队伍状态不符合要求");
 
         // 6.校验密码
         String password = team.getPassword();
@@ -504,22 +460,19 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
 
         // 4.2.解散公开或私有队伍不需要密码
         if (TeamStatusEnum.PUBLIC.equals(statusEnum)) {
-            if (StringUtils.isNotBlank(password))
-                throw new BusinessException(ErrorCode.PARMS_ERROR, "加入公开队伍无需密码");
+            if (StringUtils.isNotBlank(password)) throw new BusinessException(ErrorCode.PARMS_ERROR, "加入公开队伍无需密码");
         }
 
         // 5.解散队伍
         // 4.1.删除team记录
         boolean teamRemove = this.removeById(teamId);
-        if (!teamRemove)
-            throw new BusinessException(ErrorCode.UPDATE_ERROR);
+        if (!teamRemove) throw new BusinessException(ErrorCode.UPDATE_ERROR);
 
         // 4.2.删除user_team记录
         QueryWrapper<UserTeam> uqw = new QueryWrapper<>();
         uqw.eq("team_id", teamId);
         boolean userTeamRemove = userTeamService.remove(uqw);
-        if (!userTeamRemove)
-            throw new BusinessException(ErrorCode.UPDATE_ERROR);
+        if (!userTeamRemove) throw new BusinessException(ErrorCode.UPDATE_ERROR);
 
         return "解散队伍成功";
     }
@@ -534,26 +487,21 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
     public Team getTeam(Long teamId, HttpServletRequest request) {
         // 1.校验登录
         User loginUser = getLoginUser(request);
-        if (loginUser == null)
-            throw new BusinessException(ErrorCode.NOT_LOGIN);
+        if (loginUser == null) throw new BusinessException(ErrorCode.NOT_LOGIN);
 
         // 2.检验队伍是否存在
-        if (teamId == null || teamId < 0)
-            throw new BusinessException(ErrorCode.PARMS_ERROR);
+        if (teamId == null || teamId < 0) throw new BusinessException(ErrorCode.PARMS_ERROR);
 
         Team currentTeam = this.getById(teamId);
-        if (currentTeam == null)
-            throw new BusinessException(ErrorCode.UPDATE_ERROR, "该队伍不存在");
+        if (currentTeam == null) throw new BusinessException(ErrorCode.UPDATE_ERROR, "该队伍不存在");
 
         // 3.校验用户状态
         Integer userStatus = loginUser.getUserStatus();
-        if (userStatus == 1)
-            throw new BusinessException(ErrorCode.NO_AUTH, "该账号已被封");
+        if (userStatus == 1) throw new BusinessException(ErrorCode.NO_AUTH, "该账号已被封");
 
         // 4.查询队伍信息
         Team team = this.getById(teamId);
-        if (team == null)
-            throw new BusinessException(ErrorCode.UPDATE_ERROR);
+        if (team == null) throw new BusinessException(ErrorCode.UPDATE_ERROR);
 
         return team;
     }
@@ -568,8 +516,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
     public List<Team> getJoinedTeam(Long userId, HttpServletRequest request) {
         // 1.校验登录
         User loginUser = getLoginUser(request);
-        if (loginUser == null)
-            throw new BusinessException(ErrorCode.NOT_LOGIN);
+        if (loginUser == null) throw new BusinessException(ErrorCode.NOT_LOGIN);
 
         // TODO
         // 2.获取已加入的队伍
@@ -603,8 +550,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
     public List<Team> getCreatedTeam(Long userId, HttpServletRequest request) {
         // 1.校验登录
         User loginUser = getLoginUser(request);
-        if (loginUser == null)
-            throw new BusinessException(ErrorCode.NOT_LOGIN);
+        if (loginUser == null) throw new BusinessException(ErrorCode.NOT_LOGIN);
 
         // 2.获取已创建的队伍
         QueryWrapper<Team> tqw = new QueryWrapper<>();

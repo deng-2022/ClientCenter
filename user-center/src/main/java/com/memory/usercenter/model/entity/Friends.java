@@ -1,20 +1,21 @@
-package generator.domain;
+package com.memory.usercenter.model.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.util.Date;
 import lombok.Data;
 
+import java.io.Serializable;
+import java.util.Date;
+
 /**
- * 
- * @TableName team
+ * 好友表
+ * @TableName friends
  */
-@TableName(value ="team")
+@TableName(value ="friends")
 @Data
-public class Team implements Serializable {
+public class Friends implements Serializable {
     /**
      * id
      */
@@ -22,44 +23,24 @@ public class Team implements Serializable {
     private Long id;
 
     /**
-     * 队伍名称
-     */
-    private String name;
-
-    /**
-     * 描述
-     */
-    private String description;
-
-    /**
-     * 最大人数
-     */
-    private Integer maxNum;
-
-    /**
-     * 过期时间
-     */
-    private Date expireTime;
-
-    /**
-     * 队长id
+     * 用户id
      */
     private Long userId;
 
     /**
-     * 已加人数
+     * 好友id
      */
-    private Integer joinNum;
+    private Long friendId;
 
     /**
-     * 0 - 公开，1 - 私有，2 - 加密
+     * 好友备注
      */
-    private Integer status;
+    private String note;
 
     /**
-     * 密码
+     * 好友头像
      */
-    private String password;
+    private String friendUrl;
 
     /**
      * 创建时间

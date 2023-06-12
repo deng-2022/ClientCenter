@@ -2,12 +2,15 @@ package com.memory.usercenter.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.memory.usercenter.common.BaseResponse;
+import com.memory.usercenter.common.ErrorCode;
 import com.memory.usercenter.common.ResultUtils;
 import com.memory.usercenter.exception.BusinessException;
 import com.memory.usercenter.model.entity.User;
 import com.memory.usercenter.model.request.user.UserLogin;
 import com.memory.usercenter.model.request.user.UserRegister;
 import com.memory.usercenter.service.UserService;
+import com.memory.usercenter.utils.SMSUtils;
+import com.memory.usercenter.utils.ValidateCodeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
@@ -52,6 +55,61 @@ public class UserController {
 
         long userRegister = userService.userRegister(userAccount, userPassword, checkPassword, planetCode);
         return ResultUtils.success(userRegister);
+    }
+
+    /**
+     * 发送短信验证码
+     *
+     * @param phoneNumber 手机号
+     * @param request     request
+     * @return 短信验证码发送成功
+     */
+    @PostMapping("/sendMsg")
+    public BaseResponse<String> sendMsg(String phoneNumber, HttpServletRequest request) {
+        // 1.校验手机号
+        if (StringUtils.isEmpty(phoneNumber))
+            throw new BusinessException(PARMS_ERROR);
+        // 2.生成随机的4位验证码
+        String code = ValidateCodeUtils.generateValidateCode(4).toString();
+        // 3.调用阿里云提供的短信服务API完成发送短信
+        SMSUtils.sendMessage("伙伴匹配", "", phoneNumber, code);
+        // 4.需要将生成的验证码保存到Session
+        request.getSession().setAttribute(phoneNumber, code);
+        // 5.短信发送成功
+        return ResultUtils.success("短信验证码发送成功!");
+    }
+
+    /**
+     * 直接获取验证码
+     *
+     * @param phoneNumber 电话号码
+     * @return 验证码
+     */
+    @GetMapping("/getCode")
+    public BaseResponse<String> getCode(String phoneNumber) {
+        //controller对参数的校验
+        if (StringUtils.isAnyBlank(phoneNumber))
+            throw new BusinessException(PARMS_ERROR);
+
+        String code = userService.getCode(phoneNumber);
+        return ResultUtils.success(code);
+    }
+
+    /**
+     * 验证码登录
+     *
+     * @param phoneNumber 电话号码
+     * @param code        验证码
+     * @return 脱敏用户信息
+     */
+    @GetMapping("/codeLogin")
+    public BaseResponse<User> codeLogin(String phoneNumber, String code, String rightCode, HttpServletRequest request) {
+        //controller对参数的校验
+        if (StringUtils.isAnyBlank(phoneNumber, code, rightCode))
+            throw new BusinessException(PARMS_ERROR);
+
+        User user = userService.codeLogin(phoneNumber, code, rightCode, request);
+        return ResultUtils.success(user);
     }
 
     /**
