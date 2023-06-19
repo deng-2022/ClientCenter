@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1634122281174867969,
+    "userAccount": "memory",
+    "username": null,
+    "userPassword": "cc7554766460d0192185d2b43f0acc69",
+    "avatarUtil": null,
+    "gender": "0",
+    "phone": null,
+    "email": null,
+    "userStatus": 0,
+    "createTime": "2023-03-10T09:21:27.000+00:00",
+    "updateTime": "2023-03-10T09:21:27.000+00:00",
+    "isDelete": 0,
+    "userRole": 0
+  },
+  {
+    "id": 1634122313923993601,
+    "userAccount": "memory2",
+    "username": null,
+    "userPassword": "cc7554766460d0192185d2b43f0acc69",
+    "avatarUtil": null,
+    "gender": "0",
+    "phone": null,
+    "email": null,
+    "userStatus": 0,
+    "createTime": "2023-03-10T09:21:34.000+00:00",
+    "updateTime": "2023-03-10T09:21:34.000+00:00",
+    "isDelete": 0,
+    "userRole": 1
+  },
+  {
+    "id": 1634122328977350658,
+    "userAccount": "memory3",
+    "username": null,
+    "userPassword": "cc7554766460d0192185d2b43f0acc69",
+    "avatarUtil": null,
+    "gender": "0",
+    "phone": null,
+    "email": null,
+    "userStatus": 0,
+    "createTime": "2023-03-10T09:21:38.000+00:00",
+    "updateTime": "2023-03-10T09:21:38.000+00:00",
+    "isDelete": 0,
+    "userRole": 0
+  }
+]

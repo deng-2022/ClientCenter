@@ -1,0 +1,3 @@
+本项目仅供学习交流用，线上访问地址: 未完成
+前端开源地址:https://gitee.com/deng-2022/partner-match.git
+后端开源地址:https://gitee.com/deng-2022/client-center.git

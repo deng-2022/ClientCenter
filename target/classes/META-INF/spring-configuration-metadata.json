@@ -1,0 +1,22 @@
+{
+  "groups": [
+    {
+      "name": "spring.redis",
+      "type": "com.memory.usercenter.config.RedissionConfig",
+      "sourceType": "com.memory.usercenter.config.RedissionConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "spring.redis.host",
+      "type": "java.lang.String",
+      "sourceType": "com.memory.usercenter.config.RedissionConfig"
+    },
+    {
+      "name": "spring.redis.port",
+      "type": "java.lang.String",
+      "sourceType": "com.memory.usercenter.config.RedissionConfig"
+    }
+  ],
+  "hints": []
+}

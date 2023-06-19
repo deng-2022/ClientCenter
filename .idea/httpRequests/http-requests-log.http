@@ -1,0 +1,474 @@
+GET http://localhost:8080/user/search
+Content-Type: application/json
+
+<> 2023-03-10T172440.200.json
+
+###
+
+GET http://localhost:8080/user/search
+Content-Type: application/json
+
+<> 2023-03-10T172307.200.json
+
+###
+
+POST http://localhost:8080/user/login
+Content-Type: application/json
+
+{
+  "userAccount": "memory2",
+  "userPassword": 12345678
+}
+
+<> 2023-03-10T172302.200.json
+
+###
+
+GET http://localhost:8080/user/search
+Content-Type: application/json
+
+<> 2023-03-10T172252.200.json
+
+###
+
+POST http://localhost:8080/user/login
+Content-Type: application/json
+
+{
+  "userAccount": "memory",
+  "userPassword": 12345678
+}
+
+<> 2023-03-10T172248.200.json
+
+###
+
+POST http://localhost:8080/user/register
+Content-Type: application/json
+
+{
+  "userAccount": "memory3",
+  "userPassword": 12345678,
+  "checkPassword": 12345678
+}
+
+<> 2023-03-10T172138.200.json
+
+###
+
+POST http://localhost:8080/user/register
+Content-Type: application/json
+
+{
+  "userAccount": "memory2",
+  "userPassword": 12345678,
+  "checkPassword": 12345678
+}
+
+<> 2023-03-10T172135.200.json
+
+###
+
+POST http://localhost:8080/user/register
+Content-Type: application/json
+
+{
+  "userAccount": "memory",
+  "userPassword": 12345678,
+  "checkPassword": 12345678
+}
+
+<> 2023-03-10T172127.200.json
+
+###
+
+POST http://localhost:8080/user/register
+Content-Type: application/json
+
+{
+  "userAccount": "memory",
+  "userPassword": 12345678,
+  "checkPassword": 12345678
+}
+
+###
+
+GET http://localhost:8080/user/search
+Content-Type: application/json
+
+<> 2023-03-10T171927.500.json
+
+###
+
+GET http://localhost:8080/user/search
+Content-Type: application/json
+
+<> 2023-03-10T171654.500.json
+
+###
+
+GET http://localhost:8080/user/search
+Content-Type: application/json
+
+<> 2023-03-10T171349.500.json
+
+###
+
+POST http://localhost:8080/user/login
+Content-Type: application/json
+
+{
+  "userAccount": "memory2",
+  "userPassword": 12345678
+}
+
+<> 2023-03-10T171333.200.json
+
+###
+
+GET http://localhost:8080/user/search
+Content-Type: application/json
+
+<> 2023-03-10T171315.500.json
+
+###
+
+POST http://localhost:8080/user/login
+Content-Type: application/json
+
+{
+  "userAccount": "memory",
+  "userPassword": 12345678
+}
+
+<> 2023-03-10T171241.200.json
+
+###
+
+POST http://localhost:8080/user/register
+Content-Type: application/json
+
+{
+  "userAccount": "memory5",
+  "userPassword": 12345678,
+  "checkPassword": 12345678
+}
+
+<> 2023-03-10T171142.200.json
+
+###
+
+POST http://localhost:8080/user/register
+Content-Type: application/json
+
+{
+  "userAccount": "memory4",
+  "userPassword": 12345678,
+  "checkPassword": 12345678
+}
+
+<> 2023-03-10T171139.200.json
+
+###
+
+POST http://localhost:8080/user/register
+Content-Type: application/json
+
+{
+  "userAccount": "memory3",
+  "userPassword": 12345678,
+  "checkPassword": 12345678
+}
+
+<> 2023-03-10T171135.200.json
+
+###
+
+POST http://localhost:8080/user/register
+Content-Type: application/json
+
+{
+  "userAccount": "memory2",
+  "userPassword": 12345678,
+  "checkPassword": 12345678
+}
+
+<> 2023-03-10T171125.200.json
+
+###
+
+GET http://localhost:8080/user/search
+Content-Type: application/json
+
+<> 2023-03-10T171053.200.json
+
+###
+
+GET http://localhost:8080/user/search
+Content-Type: application/json
+
+<> 2023-03-10T170951.200.json
+
+###
+
+POST http://localhost:8080/user/login
+Content-Type: application/json
+
+{
+  "userAccount": "memory",
+  "userPassword": 12345678
+}
+
+<> 2023-03-10T142720.200.json
+
+###
+
+POST http://localhost:8080/user/login
+Content-Type: application/json
+
+{
+  "userAccount": "memory",
+  "userPassword": 12345678
+}
+
+###
+
+POST http://localhost:8080/user/login
+Content-Type: application/json
+
+{
+  "userAccount": "memory",
+  "userPassword": 12345678
+}
+
+###
+
+POST http://localhost:8080/user/login
+Content-Type: application/json
+
+{
+  "userAccount": "memory",
+  "userPassword": 12345678
+}
+
+<> 2023-03-10T142203.200.json
+
+###
+
+POST http://localhost:8080/user/register
+Content-Type: application/json
+
+{
+  "userAccount": "memory",
+  "userPassword": 12345678,
+  "checkPassword": 12345678
+}
+
+<> 2023-03-10T142155.200.json
+
+###
+
+POST http://localhost:8080/user/register
+Content-Type: application/json
+
+{
+  "userAccount": "memory",
+  "userPassword": 12345678,
+  "checkPassword": 12345678
+}
+
+###
+
+POST http://localhost:8080/user/login
+Content-Type: application/json
+
+{
+  "userAccount": "memory",
+  "userPassword": 12345678
+}
+
+###
+
+POST http://localhost:8080/user/login
+Content-Type: application/json
+
+{
+  "userAccount": "memory",
+  "userPassword": 12345678
+}
+
+###
+
+POST http://localhost:8080/user/login
+Content-Type: application/json
+
+{
+  "userAccount": "memory",
+  "userPassword": 12345678
+}
+
+<> 2023-03-10T141728.200.json
+
+###
+
+POST http://localhost:8080/user/login
+Content-Type: application/json
+
+{
+  "userAccount": "memory",
+  "userPassword": 12345678
+}
+
+<> 2023-03-10T141650.200.json
+
+###
+
+POST http://localhost:8080/user/login
+Content-Type: application/json
+
+{
+  "userAccount": "memory",
+  "userPassword": 12345678
+}
+
+<> 2023-03-10T141622.200.json
+
+###
+
+POST http://localhost:8080/user/login
+Content-Type: application/json
+
+{
+  "userAccount": "memory",
+  "userPassword": 12345678
+}
+
+<> 2023-03-10T141549.200.json
+
+###
+
+POST http://localhost:8080/user/register
+Content-Type: application/json
+
+{
+  "userAccount": "memory",
+  "userPassword": 12345678,
+  "checkPassword": 12345678
+}
+
+<> 2023-03-10T140646.200.json
+
+###
+
+POST http://localhost:8080/user/register
+Content-Type: application/json
+
+{
+  "userAccount": "memory",
+  "userPassword": 12345678,
+  "checkPassword": 12345678
+}
+
+<> 2023-03-10T140640.200.json
+
+###
+
+POST http://localhost:8080/user/register
+Content-Type: application/json
+
+{
+  "userAccount": "memory6",
+  "userPassword": 12345678,
+  "checkPassword": 12345678
+}
+
+<> 2023-03-10T140551.200.json
+
+###
+
+POST http://localhost:8080/user/register
+Content-Type: application/json
+
+{
+  "userAccount": "memory5",
+  "userPassword": 12345678,
+  "checkPassword": 12345678
+}
+
+<> 2023-03-10T140525.200.json
+
+###
+
+POST http://localhost:8080/user/register
+Content-Type: application/json
+
+{
+  "userAccount": "memory3",
+  "userPassword": 12345678,
+  "checkPassword": 12345678
+}
+
+<> 2023-03-10T140507.200.json
+
+###
+
+POST http://localhost:8080/user/login
+Content-Type: application/json
+
+{
+  "userAccount": "memory3",
+  "userPassword": 12345678
+}
+
+<> 2023-03-10T140229.200.json
+
+###
+
+POST http://localhost:8080/user/login
+Content-Type: application/json
+
+{
+  "userAccount": "memory3",
+  "userPassword": 12345678
+}
+
+###
+
+POST http://localhost:8080/user/login
+Content-Type: application/json
+
+{
+  "userAccount": "memory",
+  "userPassword": 12345678
+}
+
+###
+
+POST http://localhost:8080/user/login
+Content-Type: application/json
+
+{
+  "userAccount": "memory",
+  "userPassword": 12345678
+}
+
+###
+
+POST http://localhost:8080/user/login
+Content-Type: application/json
+
+{
+  "userAccount": "memory",
+  "userPassword": 12345678
+}
+
+###
+
+POST http://localhost:8080/user/login
+
+{
+"userAccount": "memory",
+}
+
+###
+
