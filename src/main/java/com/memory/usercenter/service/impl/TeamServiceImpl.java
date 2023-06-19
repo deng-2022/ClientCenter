@@ -238,10 +238,15 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
         utqw.select("team_id").eq("user_id", loginUser.getId());
         List<UserTeam> userTeamList = userTeamService.list(utqw);
         // 6.2.队伍列表排除掉用户已加入的队伍
+<<<<<<< HEAD:src/main/java/com/memory/usercenter/service/impl/TeamServiceImpl.java
         if (!CollectionUtils.isEmpty(userTeamList)) {
             List<Long> teamIdList = userTeamList.stream().map(UserTeam::getTeamId).collect(Collectors.toList());
             tqw.notIn("id", teamIdList);
         }
+=======
+        List<Long> teamIdList = userTeamList.stream().map(UserTeam::getTeamId).collect(Collectors.toList());
+        tqw.notIn("id", teamIdList);
+>>>>>>> aba96f336cac55732a1d64ccabc01f1816c36be3:user-center/src/main/java/com/memory/usercenter/service/impl/TeamServiceImpl.java
 
         // 7.分页查询
         Page<Team> teamPage = this.page(new Page<>(1, 5), tqw);

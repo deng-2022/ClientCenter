@@ -4,7 +4,45 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD:.idea/workspace.xml
     <list default="true" id="0b35a969-b326-48cb-b7cb-4fac97c8ff21" name="Changes" comment="随机匹配优化 页面标题优化 用户标签优化 退出队伍优化 搜索队伍优 化 加入队伍功能实现及优化 分页查询队伍优化 主页优化 定时查询任务优化 个人信息页 优化" />
+=======
+    <list default="true" id="0b35a969-b326-48cb-b7cb-4fac97c8ff21" name="Changes" comment="解散队伍&#10;获取当前队伍队伍信息&#10;获取已加入的队伍信息&#10;基本完成">
+      <change afterPath="$PROJECT_DIR$/sql/create_table.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/FriendsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/utils/SMSUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/utils/ValidateCodeUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../myapp/src/app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../myapp/src/app.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../myapp/src/pages/user/Login/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../myapp/src/pages/user/Login/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../myapp/src/plugins/globalRequest.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../myapp/src/plugins/globalRequest.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ce413046-64c1-4646-a6b9-b2a22b6c3c88.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ce413046-64c1-4646-a6b9-b2a22b6c3c88.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/mybatisx/templates.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mybatisx/templates.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/common/ErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/common/ErrorCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/TeamServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/TeamServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/generator/domain/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/entity/Friends.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/generator/mapper/TeamMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/generator/service/TeamService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/generator/service/impl/TeamServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/common/ErrorCode.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/memory/usercenter/common/ErrorCode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/memory/usercenter/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/memory/usercenter/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/service/impl/TeamServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/memory/usercenter/service/impl/TeamServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/service/impl/UserServiceImpl$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/memory/usercenter/service/impl/UserServiceImpl$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/service/impl/UserServiceImpl$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/memory/usercenter/service/impl/UserServiceImpl$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/service/impl/UserServiceImpl$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/memory/usercenter/service/impl/UserServiceImpl$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/memory/usercenter/service/impl/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/generator/domain/Team.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/generator/mapper/TeamMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/generator/service/TeamService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/generator/service/impl/TeamServiceImpl.class" beforeDir="false" />
+    </list>
+>>>>>>> aba96f336cac55732a1d64ccabc01f1816c36be3:user-center/.idea/workspace.xml
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,7 +59,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+<<<<<<< HEAD:.idea/workspace.xml
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+=======
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+>>>>>>> aba96f336cac55732a1d64ccabc01f1816c36be3:user-center/.idea/workspace.xml
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -50,6 +92,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD:.idea/workspace.xml
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
@@ -78,6 +121,36 @@
     ]
   }
 }</component>
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
+    "jdk.selected.JAVA_MODULE": "corretto-11",
+    "last.edited.regexp": "199",
+    "last_opened_file_path": "D:/Project/星球项目/ClientCenter/user-center",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "spring.configuration.checksum": "bf960145b2a1338fac0087aca14c2b21"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
+  }
+}]]></component>
+>>>>>>> aba96f336cac55732a1d64ccabc01f1816c36be3:user-center/.idea/workspace.xml
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -192,6 +265,7 @@
         <option name="com.soywiz.korge.intellij.UpdateResourceBeforeRunTask" enabled="false" />
       </method>
     </configuration>
+<<<<<<< HEAD:.idea/workspace.xml
     <configuration default="true" type="lua.app" factoryName="Lua Application">
       <option name="program" value="lua.exe" />
       <option name="file" value="" />
@@ -202,6 +276,8 @@
       <option name="showConsole" value="true" />
       <method v="2" />
     </configuration>
+=======
+>>>>>>> aba96f336cac55732a1d64ccabc01f1816c36be3:user-center/.idea/workspace.xml
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.UserCenterApplication" />
@@ -351,11 +427,15 @@
       <workItem from="1686283062892" duration="1838000" />
       <workItem from="1686323456310" duration="1471000" />
       <workItem from="1686475785917" duration="7524000" />
+<<<<<<< HEAD:.idea/workspace.xml
       <workItem from="1686538514594" duration="3023000" />
       <workItem from="1686752098868" duration="2355000" />
       <workItem from="1686792300155" duration="1276000" />
       <workItem from="1687048536080" duration="595000" />
       <workItem from="1687157714936" duration="366000" />
+=======
+      <workItem from="1686538514594" duration="2795000" />
+>>>>>>> aba96f336cac55732a1d64ccabc01f1816c36be3:user-center/.idea/workspace.xml
     </task>
     <task id="LOCAL-00001" summary="redission实现分布式锁, 解决了多台服务器中, 只能由一台服务器成功抢到锁并缓存用户信息">
       <created>1681828259232</created>
@@ -420,6 +500,7 @@
       <option name="project" value="LOCAL" />
       <updated>1683102990273</updated>
     </task>
+<<<<<<< HEAD:.idea/workspace.xml
     <task id="LOCAL-00010" summary="随机匹配优化 页面标题优化 用户标签优化 退出队伍优化 搜索队伍优 化 加入队伍功能实现及优化 分页查询队伍优化 主页优化 定时查询任务优化 个人信息页 优化">
       <created>1687158003032</created>
       <option name="number" value="00010" />
@@ -428,6 +509,9 @@
       <updated>1687158003032</updated>
     </task>
     <option name="localTasksCounter" value="11" />
+=======
+    <option name="localTasksCounter" value="10" />
+>>>>>>> aba96f336cac55732a1d64ccabc01f1816c36be3:user-center/.idea/workspace.xml
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -453,15 +537,23 @@
     <MESSAGE value="修改队伍功能 完成" />
     <MESSAGE value="加入队伍&#10;退出队伍&#10;基本完成" />
     <MESSAGE value="解散队伍&#10;获取当前队伍队伍信息&#10;获取已加入的队伍信息&#10;基本完成" />
+<<<<<<< HEAD:.idea/workspace.xml
     <MESSAGE value="随机匹配优化 页面标题优化 用户标签优化 退出队伍优化 搜索队伍优 化 加入队伍功能实现及优化 分页查询队伍优化 主页优化 定时查询任务优化 个人信息页 优化" />
     <option name="LAST_COMMIT_MESSAGE" value="随机匹配优化 页面标题优化 用户标签优化 退出队伍优化 搜索队伍优 化 加入队伍功能实现及优化 分页查询队伍优化 主页优化 定时查询任务优化 个人信息页 优化" />
+=======
+    <option name="LAST_COMMIT_MESSAGE" value="解散队伍&#10;获取当前队伍队伍信息&#10;获取已加入的队伍信息&#10;基本完成" />
+>>>>>>> aba96f336cac55732a1d64ccabc01f1816c36be3:user-center/.idea/workspace.xml
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/TeamServiceImpl.java</url>
+<<<<<<< HEAD:.idea/workspace.xml
           <line>263</line>
+=======
+          <line>261</line>
+>>>>>>> aba96f336cac55732a1d64ccabc01f1816c36be3:user-center/.idea/workspace.xml
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

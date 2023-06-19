@@ -185,7 +185,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         // 1.校验验证码
         if (!code.equals(rightCode)) throw new BusinessException(CODE_ERROR);
 
+<<<<<<< HEAD:src/main/java/com/memory/usercenter/service/impl/UserServiceImpl.java
         // 2.校验电话号码(非空且合法)
+=======
+        // 2.校验电话号码
+>>>>>>> aba96f336cac55732a1d64ccabc01f1816c36be3:user-center/src/main/java/com/memory/usercenter/service/impl/UserServiceImpl.java
         String pattern = "1\\d{10}";
         if (StringUtils.isBlank(phoneNumber) || !Pattern.matches(pattern, phoneNumber))
             throw new BusinessException(PARMS_ERROR, "电话号码有误");
@@ -257,6 +261,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         Long id = currentUser.getId();
 
         // 查询数据库, 获取最新信息, 而非登录时记录的信息
+        User byId = getById(id);
         return getById(id);
     }
 
