@@ -185,7 +185,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         // 1.校验验证码
         if (!code.equals(rightCode)) throw new BusinessException(CODE_ERROR);
 
-        // 2.校验电话号码
+        // 2.校验电话号码(非空且合法)
         String pattern = "1\\d{10}";
         if (StringUtils.isBlank(phoneNumber) || !Pattern.matches(pattern, phoneNumber))
             throw new BusinessException(PARMS_ERROR, "电话号码有误");
