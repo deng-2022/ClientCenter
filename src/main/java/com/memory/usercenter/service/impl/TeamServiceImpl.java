@@ -204,7 +204,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
      */
     @Transactional
     @Override
-    public Page<Team> teamList(TeamQuery team, HttpServletRequest request) {
+    public Page<Team> teamSearch(TeamQuery team, HttpServletRequest request) {
         // 登录校验
         User loginUser = getLoginUser(request);
         if (loginUser == null) throw new BusinessException(ErrorCode.NOT_LOGIN);
@@ -238,18 +238,15 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
         utqw.select("team_id").eq("user_id", loginUser.getId());
         List<UserTeam> userTeamList = userTeamService.list(utqw);
         // 6.2.队伍列表排除掉用户已加入的队伍
-<<<<<<< HEAD:src/main/java/com/memory/usercenter/service/impl/TeamServiceImpl.java
         if (!CollectionUtils.isEmpty(userTeamList)) {
             List<Long> teamIdList = userTeamList.stream().map(UserTeam::getTeamId).collect(Collectors.toList());
             tqw.notIn("id", teamIdList);
         }
-=======
         List<Long> teamIdList = userTeamList.stream().map(UserTeam::getTeamId).collect(Collectors.toList());
         tqw.notIn("id", teamIdList);
->>>>>>> aba96f336cac55732a1d64ccabc01f1816c36be3:user-center/src/main/java/com/memory/usercenter/service/impl/TeamServiceImpl.java
 
         // 7.分页查询
-        Page<Team> teamPage = this.page(new Page<>(1, 5), tqw);
+        Page<Team> teamPage = this.page(new Page<>(1, 10), tqw);
         if (teamPage == null) throw new BusinessException(ErrorCode.UPDATE_ERROR);
 
         return teamPage;
@@ -511,6 +508,29 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
         if (team == null) throw new BusinessException(ErrorCode.UPDATE_ERROR);
 
         return team;
+    }
+
+    /**
+     * 查询队伍
+     * 分页查询
+     *
+     * @return 队伍列表
+     */
+    @Override
+    public Page<Team> teamList(TeamList teamList, HttpServletRequest request) {
+        Page<Team> teamPage = new Page<>(1, 10);
+
+        QueryWrapper<Team> tqw = new QueryWrapper<>();
+        // 不需要查询加密队伍(仅查询公开队伍)
+        if (!teamList.getIsSecret()) {
+            tqw.eq("status", TeamStatusEnum.PUBLIC.getValue());
+        } else {
+            tqw.eq("status", TeamStatusEnum.PUBLIC.getValue())
+                    .or().eq("status", TeamStatusEnum.SECRET.getValue());
+        }
+
+        Page<Team> page = this.page(teamPage, tqw);
+        return page;
     }
 
     /**

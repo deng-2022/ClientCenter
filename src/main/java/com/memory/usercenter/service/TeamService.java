@@ -40,7 +40,7 @@ public interface TeamService extends IService<Team> {
      * @param teamQuery 查询队伍参数
      * @return 队伍列表
      */
-    Page<Team> teamList(TeamQuery teamQuery, HttpServletRequest request);
+    Page<Team> teamSearch(TeamQuery teamQuery, HttpServletRequest request);
 
     /**
      * 加入队伍
@@ -72,6 +72,13 @@ public interface TeamService extends IService<Team> {
      * @return 队伍信息
      */
     Team getTeam(Long teamId, HttpServletRequest request);
+
+    /**
+     * 获取所有队伍信息
+     *
+     * @return 队伍信息
+     */
+    Page<Team> teamList(TeamList team, HttpServletRequest request);
 
     /**
      * 获取已加入队伍信息

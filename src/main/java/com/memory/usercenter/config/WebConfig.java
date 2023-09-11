@@ -39,8 +39,8 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:7070", "http://localhost:8000", "http://localhost:3000")
                 .allowCredentials(true)
+                .allowedOrigins("http://localhost:7071", "http://localhost:3000","http://120.55.62.195:7071")
                 .allowedMethods("GET", "POST", "DELETE", "PUT")
                 .maxAge(3600);
     }
@@ -70,5 +70,4 @@ public class WebConfig implements WebMvcConfigurer {
         interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
         return interceptor;
     }
-
 }

@@ -11,6 +11,7 @@
         <result property="maxNum" column="max_num" jdbcType="INTEGER"/>
         <result property="expireTime" column="expire_time" jdbcType="TIMESTAMP"/>
         <result property="userId" column="user_id" jdbcType="BIGINT"/>
+        <result property="imgUrl" column="img_url" jdbcType="VARCHAR"/>
         <result property="joinNum" column="join_num" jdbcType="INTEGER"/>
         <result property="status" column="status" jdbcType="INTEGER"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
@@ -20,9 +21,8 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id
-        ,name,description,
-        max_num,expire_time,user_id,
+        id,name,description,
+        max_num,expire_time,user_id,img_url,
         join_num,status,password,
         create_time,update_time,is_delete
     </sql>

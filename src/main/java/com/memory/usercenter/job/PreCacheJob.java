@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
  * Version 1.0
  */
 
-@Component
+//@Component
 @Slf4j
 public class PreCacheJob {
     @Resource

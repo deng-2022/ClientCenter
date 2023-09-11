@@ -68,13 +68,13 @@ public class TeamController {
      * @param team 查询队伍参数
      * @return 队伍列表
      */
-    @GetMapping("/list/page")
-    public BaseResponse<Page<Team>> teamList(TeamQuery team, HttpServletRequest request) {
+    @GetMapping("/search/page")
+    public BaseResponse<Page<Team>> teamSearch(TeamQuery team, HttpServletRequest request) {
         // controller对参数的校验
         if (team == null)
             throw new BusinessException(ErrorCode.PARMS_ERROR);
 
-        Page<Team> teamPage = teamService.teamList(team, request);
+        Page<Team> teamPage = teamService.teamSearch(team, request);
         return ResultUtils.success(teamPage);
     }
 
@@ -145,6 +145,22 @@ public class TeamController {
 
         Team team = teamService.getTeam(teamId, request);
         return ResultUtils.success(team);
+    }
+
+    /**
+     * 查询队伍
+     * 分页查询
+     *
+     * @return 队伍列表
+     */
+    @GetMapping("/list/page")
+    public BaseResponse<Page<Team>> teamList(TeamList team, HttpServletRequest request) {
+        // controller对参数的校验
+        if (team == null)
+            throw new BusinessException(ErrorCode.PARMS_ERROR);
+
+        Page<Team> teamPage = teamService.teamList(team, request);
+        return ResultUtils.success(teamPage);
     }
 
     /**

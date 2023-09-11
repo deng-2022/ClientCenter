@@ -88,6 +88,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         // 2.对密码进行加密
         String encryptPassword = DigestUtils.md5DigestAsHex((SALT + userPassword).getBytes());
 
+        // 创建一个Random对象
+        Random random = new Random();
+        long startTimestamp = System.currentTimeMillis(); // 当前时间戳
+        long endTimestamp = startTimestamp + random.nextInt(1000000); // 当前时间戳 + 0到1000000之间的随机数
         // 3.向数据库中插入用户数据
         User user = new User();
         //
@@ -362,10 +366,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      */
     @Override
     public Page<User> selectPage(long currentPage, long pageSize, HttpServletRequest request) {
-        // 获取当前登录用户
         User loginUser = getLoginUser(request);
+        // 获取当前登录用户
+//        User loginUser = getLoginUser(request);
         // 拿到当前登录用户的key(每个用户都有各自对应的key)
-        String redisKey = String.format("memory:user:recommend:%s", loginUser.getId());
+//        String redisKey = String.format("memory:user:recommend:%s", loginUser.getId());
 //        // 查缓存
 //        Page<User> userPage = (Page<User>) redisTemplate.opsForValue().get(redisKey);
 //        // 缓存命中, 则返回用户信息
@@ -373,7 +378,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 //            return userPage;
 //        }
         // 缓存未命中, 查询数据库
-        LambdaQueryWrapper<User> lqw = new LambdaQueryWrapper<>();
+        QueryWrapper<User> lqw = new QueryWrapper<>();
+        lqw.ne("id", loginUser.getId());
+
         //        // 将查询到的用户信息写到缓存中
 //        try {
 //            redisTemplate.opsForValue().set(redisKey, userPage, 24, TimeUnit.HOURS);

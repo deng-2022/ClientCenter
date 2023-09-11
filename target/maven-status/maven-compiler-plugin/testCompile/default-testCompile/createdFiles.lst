@@ -1,0 +1,8 @@
+com\memory\usercenter\mapper\UserMapperTest.class
+com\memory\usercenter\redis\RedisTest.class
+com\memory\usercenter\UserCenterApplicationTests.class
+com\memory\usercenter\utils\AlgorithmUtilsTest.class
+com\memory\usercenter\insertUser\InsertUserTest.class
+com\memory\usercenter\service\UserServiceTest.class
+com\memory\usercenter\redission\RedissonTest.class
+com\memory\usercenter\service\impl\UserServiceImplTest.class

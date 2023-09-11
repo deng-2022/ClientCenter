@@ -11,9 +11,10 @@ import java.util.Date;
 
 /**
  * 好友表
+ *
  * @TableName friends
  */
-@TableName(value ="friends")
+@TableName(value = "friends")
 @Data
 public class Friends implements Serializable {
     /**
@@ -38,17 +39,12 @@ public class Friends implements Serializable {
     private String note;
 
     /**
-     * 好友头像
-     */
-    private String friendUrl;
-
-    /**
      * 创建时间
      */
     private Date createTime;
 
     /**
-     * 
+     *
      */
     private Date updateTime;
 

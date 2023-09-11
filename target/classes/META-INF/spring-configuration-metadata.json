@@ -8,7 +8,17 @@
   ],
   "properties": [
     {
+      "name": "spring.redis.database",
+      "type": "java.lang.Integer",
+      "sourceType": "com.memory.usercenter.config.RedissionConfig"
+    },
+    {
       "name": "spring.redis.host",
+      "type": "java.lang.String",
+      "sourceType": "com.memory.usercenter.config.RedissionConfig"
+    },
+    {
+      "name": "spring.redis.password",
       "type": "java.lang.String",
       "sourceType": "com.memory.usercenter.config.RedissionConfig"
     },
