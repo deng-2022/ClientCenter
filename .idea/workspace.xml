@@ -5,114 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b35a969-b326-48cb-b7cb-4fac97c8ff21" name="Changes" comment="随机匹配优化 页面标题优化 用户标签优化 退出队伍优化 搜索队伍优 化 加入队伍功能实现及优化 分页查询队伍优化 主页优化 定时查询任务优化 个人信息页 优化">
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/request/friends/FriendsAdd.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/request/team/TeamList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application-prod.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ce413046-64c1-4646-a6b9-b2a22b6c3c88.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ce413046-64c1-4646-a6b9-b2a22b6c3c88/storage_v2/_src_/schema/db1.c4MBAA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ce413046-64c1-4646-a6b9-b2a22b6c3c88/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ce413046-64c1-4646-a6b9-b2a22b6c3c88/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ce413046-64c1-4646-a6b9-b2a22b6c3c88/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ce413046-64c1-4646-a6b9-b2a22b6c3c88/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/300db0fa-c680-4161-9b66-8ae3327877eb.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/300db0fa-c680-4161-9b66-8ae3327877eb.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/mybatisx/templates.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mybatisx/templates.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/config/RedissionConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/config/RedissionConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/config/WebConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/FriendsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/FriendsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/TeamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/TeamController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/job/PreCacheJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/job/PreCacheJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/entity/Friends.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/entity/Friends.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/entity/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/entity/Team.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/FriendsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/FriendsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/TeamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/TeamService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/constant/UserConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/constant/UserConstant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/entity/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/FriendsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/FriendsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/TeamServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/TeamServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/generator/service/FriendsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/generator/service/FriendsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/generator/service/impl/FriendsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/generator/service/impl/FriendsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/TeamMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/TeamMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/spring-configuration-metadata.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/banner.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/UserCenterApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/common/BaseResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/common/ErrorCode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/common/JacksonObjectMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/common/ResultUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/config/Knife4jConfiguration.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/config/MyInterceptor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/config/RedisTemplateConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/config/RedissionConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/config/WebConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/constant/TeamStatusEnum.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/constant/UserConstant.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/controller/FriendsController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/controller/TeamController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/controller/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/exception/BusinessException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/exception/GlobalExceptionHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/job/PreCacheJob.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/mapper/FriendsMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/mapper/TeamMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/mapper/UserMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/mapper/UserTeamMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/model/entity/Friends.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/model/entity/Team.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/model/entity/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/model/entity/UserTeam.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/model/request/team/TeamAdd.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/model/request/team/TeamDelete.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/model/request/team/TeamJoin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/model/request/team/TeamQuery.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/model/request/team/TeamQuit.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/model/request/team/TeamUpdate.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/model/request/user/UserLogin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/model/request/user/UserRegister.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/once/ImportExcel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/once/InsertUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/once/TableListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/once/UserInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/service/FriendsService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/service/TeamService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/service/UserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/service/UserTeamService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/service/impl/FriendsServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/service/impl/TeamServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/service/impl/UserServiceImpl$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/service/impl/UserServiceImpl$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/service/impl/UserServiceImpl$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/service/impl/UserServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/service/impl/UserTeamServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/utils/AlgorithmUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/utils/SMSUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/memory/usercenter/utils/ValidateCodeUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/generator/domain/Friends.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/generator/mapper/FriendsMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/generator/service/FriendsService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/generator/service/impl/FriendsServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/FriendsMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/TeamMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/UserMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/UserTeamMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/testExcel.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/memory/usercenter/UserCenterApplicationTests.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/memory/usercenter/insertUser/InsertUserTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/memory/usercenter/mapper/UserMapperTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/memory/usercenter/redis/RedisTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/memory/usercenter/redission/RedissonTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/memory/usercenter/service/UserServiceTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/memory/usercenter/service/impl/UserServiceImplTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/memory/usercenter/utils/AlgorithmUtilsTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/UserMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,38 +80,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "import_schema_mapping": "<schema-mapping><databases><list><schema-mapping-item><source-data-source-id>ce413046-64c1-4646-a6b9-b2a22b6c3c88</source-data-source-id><source-path>schema/\"memory\"</source-path><target-data-source-id>ce413046-64c1-4646-a6b9-b2a22b6c3c88</target-data-source-id><target-path>schema/\"memory\"</target-path></schema-mapping-item></list></databases></schema-mapping>",
-    "jdk.selected.JAVA_MODULE": "corretto-11",
-    "last.edited.regexp": "3333333333333333",
-    "last_opened_file_path": "D:/Project/IDEA",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "SDKs",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.annotationProcessors",
-    "spring.configuration.checksum": "872b3cb73b0aa62df92b9c3b6f198b42"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4&quot;: &quot;&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;import_schema_mapping&quot;: &quot;&lt;schema-mapping&gt;&lt;databases&gt;&lt;list&gt;&lt;schema-mapping-item&gt;&lt;source-data-source-id&gt;ce413046-64c1-4646-a6b9-b2a22b6c3c88&lt;/source-data-source-id&gt;&lt;source-path&gt;schema/\&quot;memory\&quot;&lt;/source-path&gt;&lt;target-data-source-id&gt;ce413046-64c1-4646-a6b9-b2a22b6c3c88&lt;/target-data-source-id&gt;&lt;target-path&gt;schema/\&quot;memory\&quot;&lt;/target-path&gt;&lt;/schema-mapping-item&gt;&lt;/list&gt;&lt;/databases&gt;&lt;/schema-mapping&gt;&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-11&quot;,
+    &quot;last.edited.regexp&quot;: &quot;3333333333333333&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Project/IDEA&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.annotationProcessors&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;872b3cb73b0aa62df92b9c3b6f198b42&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -254,6 +156,11 @@
     </key>
   </component>
   <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
     <option name="openRunningConfigInTab" value="true" />
   </component>
   <component name="RunManager" selected="Spring Boot.UserCenterApplication">
@@ -633,6 +540,8 @@
       <workItem from="1694390857864" duration="632000" />
       <workItem from="1694408678301" duration="1215000" />
       <workItem from="1694422539645" duration="12835000" />
+      <workItem from="1694492092221" duration="8716000" />
+      <workItem from="1694507185846" duration="608000" />
     </task>
     <task id="LOCAL-00001" summary="redission实现分布式锁, 解决了多台服务器中, 只能由一台服务器成功抢到锁并缓存用户信息">
       <created>1681828259232</created>
@@ -750,11 +659,6 @@
           <url>file://$PROJECT_DIR$/../../PicMemories/src/main/java/com/memory/picmemories/service/impl/UserServiceImpl.java</url>
           <line>97</line>
           <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/FriendsServiceImpl.java</url>
-          <line>86</line>
-          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -63,6 +63,11 @@ public class User implements Serializable {
     private Integer userStatus;
 
     /**
+     * 是否在线 0 - 在线  1 - 下线
+     */
+    private Integer isOnline;
+
+    /**
      * 创建时间
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")

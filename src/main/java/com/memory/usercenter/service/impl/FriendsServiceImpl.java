@@ -77,18 +77,13 @@ public class FriendsServiceImpl extends ServiceImpl<FriendsMapper, Friends>
         QueryWrapper<Friends> fqw = new QueryWrapper<>();
 //        fqw.select("friend_id");
         fqw.eq("user_id", loginUser.getId());
-
         List<Friends> friendsList = list(fqw);
 
         List<User> userList = new ArrayList<>();
-        QueryWrapper<User> uqw = new QueryWrapper<>();
-
         // 2.根据id查询道好友信息
         for (Friends friends : friendsList) {
             Long friendId = friends.getFriendId();
-            uqw.eq("id", friendId);
-
-            User one = userService.getOne(uqw);
+            User one = userService.getById(friendId);
             userList.add(one);
         }
 

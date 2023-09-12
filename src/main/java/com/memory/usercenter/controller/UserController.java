@@ -158,7 +158,7 @@ public class UserController {
         // controller对参数的校验
         User currentUser = (User) request.getSession().getAttribute(USER_LOGIN_STATE);
         if (currentUser == null)
-            throw new BusinessException(PARMS_ERROR);
+            throw new BusinessException(PARMS_ERROR, "该用户未登录");
 
         User user = userService.getCurrentUser(request);
         return ResultUtils.success(user);

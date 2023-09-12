@@ -2,6 +2,7 @@ package com.memory.usercenter.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.gson.Gson;
@@ -140,18 +141,23 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         QueryWrapper<User> qw = new QueryWrapper<>();
         qw.eq("user_account", userAccount).eq("user_password", encryptPassword);
         User one = this.getOne(qw);
-//        User one = userMapper.selectOne(qw);
 
         // 1.5.1.用户未注册(包含了MP自带的逻辑删除校验)
         if (one == null) throw new BusinessException(NOT_REGISTER);
 
-        // 2.脱敏用户信息
+        // 2.修改用户状态为在线
+        UpdateWrapper<User> uuw = new UpdateWrapper<>();
+        uuw.eq("user_account", userAccount).set("is_online", ONLINE);
+        boolean update = update(uuw);
+        if (!update) {
+            throw new BusinessException(UPDATE_ERROR, "用户登录失败");
+        }
+
+        // 3.脱敏用户信息
         User safetyUser = getSafetyUser(one);
-
-        // 3.记录用户登录态
+        // 4.记录用户登录态
         request.getSession().setAttribute(USER_LOGIN_STATE, safetyUser);
-
-        // 4.返回用户信息
+        // 5.返回用户信息
         return safetyUser;
     }
 
@@ -221,10 +227,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public String userLogout(HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute(USER_LOGIN_STATE);
         // 判断对象是否为空
-//        if (Optional.ofNullable(user).isPresent())
         if (user == null) throw new BusinessException(NULL_ERROR);
 
+        // 2.修改用户状态为下线
+        UpdateWrapper<User> uuw = new UpdateWrapper<>();
+        uuw.eq("user_account", user.getUserAccount()).set("is_online", OFFLINE);
+        boolean update = update(uuw);
+        if (!update) {
+            throw new BusinessException(UPDATE_ERROR, "用户下线失败");
+        }
+
         // 移除session
+        request.getSession().removeAttribute(USER_LOGIN_STATE);
         return "退出登录成功";
     }
 
@@ -424,6 +438,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public User getLoginUser(HttpServletRequest request) {
         User loginUser = (User) request.getSession().getAttribute(USER_LOGIN_STATE);
+        if (loginUser == null) throw new BusinessException(NOT_LOGIN, "该用户未登录");
+
         return getSafetyUser(loginUser);
     }
 

@@ -17,6 +17,7 @@
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
         <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
         <result property="isDelete" column="is_delete" jdbcType="TINYINT"/>
+        <result property="isOnline" column="is_online" jdbcType="TINYINT"/>
         <result property="userRole" column="user_role" jdbcType="INTEGER"/>
         <result property="planetCode" column="planet_code" jdbcType="INTEGER"/>
         <result property="profile" column="profile" jdbcType="VARCHAR"/>
@@ -29,7 +30,7 @@
         user_password,avatar_url,gender,
         phone,email,user_status,
         create_time,update_time,is_delete,
-        user_role,planet_code,profile,
+        user_role,planet_code,profile,is_online,
         tags
     </sql>
 </mapper>

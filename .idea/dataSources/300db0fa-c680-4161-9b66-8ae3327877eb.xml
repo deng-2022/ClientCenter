@@ -886,7 +886,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8_general_ci</CollationName>
     </table>
     <column id="268" parent="264" name="id">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>3</AutoIncrement>
       <Comment>id</Comment>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
@@ -1120,63 +1120,69 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <DataType>varchar(1024)|0s</DataType>
       <Position>16</Position>
     </column>
-    <index id="308" parent="266" name="PRIMARY">
+    <column id="308" parent="266" name="is_online">
+      <Comment>是否在线</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>17</Position>
+    </column>
+    <index id="309" parent="266" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="309" parent="266" name="PRIMARY">
+    <key id="310" parent="266" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="310" parent="267" name="id">
+    <column id="311" parent="267" name="id">
       <AutoIncrement>29</AutoIncrement>
       <Comment>id</Comment>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="311" parent="267" name="user_id">
+    <column id="312" parent="267" name="user_id">
       <Comment>用户id</Comment>
       <DataType>bigint(20)|0s</DataType>
       <Position>2</Position>
     </column>
-    <column id="312" parent="267" name="team_id">
+    <column id="313" parent="267" name="team_id">
       <Comment>队伍id</Comment>
       <DataType>bigint(20)|0s</DataType>
       <Position>3</Position>
     </column>
-    <column id="313" parent="267" name="join_time">
+    <column id="314" parent="267" name="join_time">
       <Comment>加入时间</Comment>
       <DataType>datetime|0s</DataType>
       <Position>4</Position>
     </column>
-    <column id="314" parent="267" name="create_time">
+    <column id="315" parent="267" name="create_time">
       <Comment>创建时间</Comment>
       <DataType>datetime|0s</DataType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <Position>5</Position>
     </column>
-    <column id="315" parent="267" name="update_time">
+    <column id="316" parent="267" name="update_time">
       <DataType>datetime|0s</DataType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
       <Position>6</Position>
     </column>
-    <column id="316" parent="267" name="is_delete">
+    <column id="317" parent="267" name="is_delete">
       <Comment>是否删除</Comment>
       <DataType>tinyint(4)|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <index id="317" parent="267" name="PRIMARY">
+    <index id="318" parent="267" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="318" parent="267" name="PRIMARY">
+    <key id="319" parent="267" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
