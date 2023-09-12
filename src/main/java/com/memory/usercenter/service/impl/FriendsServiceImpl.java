@@ -46,6 +46,7 @@ public class FriendsServiceImpl extends ServiceImpl<FriendsMapper, Friends>
             throw new BusinessException(ErrorCode.UPDATE_ERROR, "不能重复加好友");
         }
 
+        // 他成为我的好友
         Friends friends = new Friends();
         friends.setUserId(userId);
         friends.setFriendId(friend.getId());
@@ -53,11 +54,21 @@ public class FriendsServiceImpl extends ServiceImpl<FriendsMapper, Friends>
         friends.setCreateTime(new Date());
         friends.setUpdateTime(new Date());
         friends.setIsDelete(0);
+        boolean save1 = this.save(friends);
 
-        boolean save = this.save(friends);
+        // 我成为他的好友
+        friends = new Friends();
+        friends.setUserId(friend.getId());
+        friends.setFriendId(userId);
+        friends.setNote("我的好友");
+        friends.setCreateTime(new Date());
+        friends.setUpdateTime(new Date());
+        friends.setIsDelete(0);
+        boolean save2 = this.save(friends);
 
-        if (!save) {
-            throw new BusinessException(ErrorCode.UPDATE_ERROR, "添加好友失败");
+        // 保证原子操作
+        if (!save1 || !save2) {
+            throw new BusinessException(ErrorCode.UPDATE_ERROR, "建立好友关系失败");
         }
 
         return "添加好友成功";

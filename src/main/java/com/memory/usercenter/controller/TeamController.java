@@ -5,6 +5,7 @@ import com.memory.usercenter.common.BaseResponse;
 import com.memory.usercenter.common.ErrorCode;
 import com.memory.usercenter.common.ResultUtils;
 import com.memory.usercenter.exception.BusinessException;
+import com.memory.usercenter.model.VO.TeamVO;
 import com.memory.usercenter.model.entity.Team;
 import com.memory.usercenter.model.request.team.*;
 import com.memory.usercenter.service.TeamService;
@@ -166,34 +167,34 @@ public class TeamController {
     /**
      * 获取用户已加入的队伍信息
      *
-     * @param userId 用户id
+     * @param loginUserId 用户id
      * @return 已加入队伍信息
      */
     @GetMapping("/joined")
-    public BaseResponse<List<Team>> getJoinedTeam(Long userId, HttpServletRequest request) {
+    public BaseResponse<Page<TeamVO>> getJoinedTeam(Long loginUserId, HttpServletRequest request) {
         // controller对参数的校验
-        if (userId == null) {
+        if (loginUserId == null) {
             throw new BusinessException(ErrorCode.PARMS_ERROR);
         }
 
-        List<Team> joinedTeam = teamService.getJoinedTeam(userId, request);
+        Page<TeamVO> joinedTeam = teamService.getJoinedTeam(loginUserId, request);
         return ResultUtils.success(joinedTeam);
     }
 
     /**
      * 获取用户已创建的队伍信息
      *
-     * @param userId 用户id
+     * @param loginUserId 用户id
      * @return 已创建队伍信息
      */
     @GetMapping("/created")
-    public BaseResponse<List<Team>> getCreatedTeam(Long userId, HttpServletRequest request) {
+    public BaseResponse<Page<TeamVO>> getCreatedTeam(Long loginUserId, HttpServletRequest request) {
         // controller对参数的校验
-        if (userId == null) {
+        if (loginUserId == null) {
             throw new BusinessException(ErrorCode.PARMS_ERROR);
         }
 
-        List<Team> joinedTeam = teamService.getCreatedTeam(userId, request);
-        return ResultUtils.success(joinedTeam);
+        Page<TeamVO> createdTeam = teamService.getCreatedTeam(loginUserId, request);
+        return ResultUtils.success(createdTeam);
     }
 }

@@ -5,16 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b35a969-b326-48cb-b7cb-4fac97c8ff21" name="Changes" comment="随机匹配优化 页面标题优化 用户标签优化 退出队伍优化 搜索队伍优 化 加入队伍功能实现及优化 分页查询队伍优化 主页优化 定时查询任务优化 个人信息页 优化">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/300db0fa-c680-4161-9b66-8ae3327877eb.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/300db0fa-c680-4161-9b66-8ae3327877eb.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/mybatisx/templates.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mybatisx/templates.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/VO/TeamVO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/constant/UserConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/constant/UserConstant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/FriendsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/FriendsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/TeamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/TeamController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/TeamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/TeamService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/FriendsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/FriendsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/TeamServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/TeamServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/UserMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -542,6 +541,7 @@
       <workItem from="1694422539645" duration="12835000" />
       <workItem from="1694492092221" duration="8716000" />
       <workItem from="1694507185846" duration="608000" />
+      <workItem from="1694526578005" duration="7584000" />
     </task>
     <task id="LOCAL-00001" summary="redission实现分布式锁, 解决了多台服务器中, 只能由一台服务器成功抢到锁并缓存用户信息">
       <created>1681828259232</created>

@@ -7,11 +7,13 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.memory.usercenter.common.ErrorCode;
 import com.memory.usercenter.constant.TeamStatusEnum;
 import com.memory.usercenter.exception.BusinessException;
+import com.memory.usercenter.model.VO.TeamVO;
 import com.memory.usercenter.model.entity.Team;
 import com.memory.usercenter.model.entity.User;
 import com.memory.usercenter.model.entity.UserTeam;
 import com.memory.usercenter.model.request.team.*;
 import com.memory.usercenter.service.TeamService;
+import com.memory.usercenter.service.UserService;
 import com.memory.usercenter.service.UserTeamService;
 import com.memory.usercenter.mapper.TeamMapper;
 import org.apache.commons.lang3.StringUtils;
@@ -44,6 +46,8 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
     private TeamMapper teamMapper;
     @Resource
     private UserTeamService userTeamService;
+    @Resource
+    private UserService userService;
 
     /**
      * 新增队伍
@@ -536,11 +540,11 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
     /**
      * 获取用户已加入的队伍信息
      *
-     * @param userId 用户id
+     * @param loginUserId 用户id
      * @return 已加入队伍信息
      */
     @Override
-    public List<Team> getJoinedTeam(Long userId, HttpServletRequest request) {
+    public Page<TeamVO> getJoinedTeam(Long loginUserId, HttpServletRequest request) {
         // 1.校验登录
         User loginUser = getLoginUser(request);
         if (loginUser == null) throw new BusinessException(ErrorCode.NOT_LOGIN);
@@ -548,7 +552,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
         // TODO
         // 2.获取已加入的队伍
         QueryWrapper<UserTeam> utqw = new QueryWrapper<>();
-        utqw.eq("user_id", userId);
+        utqw.eq("user_id", loginUserId);
         List<UserTeam> userTeamList = userTeamService.list(utqw);
 
         // TODO 加入队伍数为空
@@ -564,33 +568,72 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
             teamList.add(safetyTeam);
         }
 
-        return teamList;
+        List<TeamVO> teamVOList = getTeamVOByTeam(teamList);
+
+        Page<TeamVO> teamPage = new Page<>(1, 20);
+        teamPage.setRecords(teamVOList);
+
+        return teamPage;
     }
 
     /**
      * 获取用户已创建的队伍信息
      *
-     * @param userId 用户id
+     * @param loginUserId 用户id
      * @return 已创建队伍信息
      */
     @Override
-    public List<Team> getCreatedTeam(Long userId, HttpServletRequest request) {
+    public Page<TeamVO> getCreatedTeam(Long loginUserId, HttpServletRequest request) {
         // 1.校验登录
         User loginUser = getLoginUser(request);
         if (loginUser == null) throw new BusinessException(ErrorCode.NOT_LOGIN);
 
         // 2.获取已创建的队伍
         QueryWrapper<Team> tqw = new QueryWrapper<>();
-        tqw.eq("user_id", userId);
+        tqw.eq("user_id", loginUserId);
         List<Team> teamList = this.list(tqw);
 
         // TODO 创建队伍数为空
         if (CollectionUtils.isEmpty(teamList)) {
             teamList = null;
         }
+        List<TeamVO> teamVOList = getTeamVOByTeam(teamList);
 
+        Page<TeamVO> teamPage = new Page<>(1, 20);
+        teamPage.setRecords(teamVOList);
 
-        return teamList;
+        return teamPage;
+    }
+
+    /**
+     * 转换teamList为teamVOList
+     *
+     * @param teamList teamList
+     * @return teamVOList
+     */
+    public List<TeamVO> getTeamVOByTeam(List<Team> teamList) {
+        List<TeamVO> teamVOList = teamList.stream().map(team -> {
+            Long userId = team.getUserId();
+            String userName = userService.getById(userId).getUsername();
+            TeamVO teamVO = new TeamVO();
+
+            teamVO.setId(team.getId());
+            teamVO.setName(team.getName());
+            teamVO.setDescription(team.getDescription());
+            teamVO.setMaxNum(team.getMaxNum());
+            teamVO.setUserName(userName);
+            teamVO.setImgUrl(team.getImgUrl());
+            teamVO.setJoinNum(team.getJoinNum());
+            teamVO.setStatus(team.getStatus());
+            teamVO.setExpireTime(team.getExpireTime());
+            teamVO.setCreateTime(team.getCreateTime());
+            teamVO.setUpdateTime(team.getUpdateTime());
+            teamVO.setIsDelete(team.getIsDelete());
+
+            return teamVO;
+        }).collect(Collectors.toList());
+
+        return teamVOList;
     }
 
     /**

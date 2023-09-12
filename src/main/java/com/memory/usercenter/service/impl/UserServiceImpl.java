@@ -18,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.jboss.marshalling.Pair;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
@@ -157,6 +158,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         User safetyUser = getSafetyUser(one);
         // 4.记录用户登录态
         request.getSession().setAttribute(USER_LOGIN_STATE, safetyUser);
+        // 6.存储到 redis 中
+
         // 5.返回用户信息
         return safetyUser;
     }
@@ -276,7 +279,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         Long id = currentUser.getId();
 
         // 查询数据库, 获取最新信息, 而非登录时记录的信息
-        User byId = getById(id);
         return getById(id);
     }
 

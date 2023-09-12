@@ -1,6 +1,7 @@
 package com.memory.usercenter.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.memory.usercenter.model.VO.TeamVO;
 import com.memory.usercenter.model.entity.Team;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.memory.usercenter.model.entity.User;
@@ -83,18 +84,18 @@ public interface TeamService extends IService<Team> {
     /**
      * 获取已加入队伍信息
      *
-     * @param userId 用户id
+     * @param loginUserId 用户id
      * @return 队伍信息
      */
-    List<Team> getJoinedTeam(Long userId, HttpServletRequest request);
+    Page<TeamVO> getJoinedTeam(Long loginUserId, HttpServletRequest request);
 
     /**
      * 获取已创建队伍信息
      *
-     * @param userId 用户id
+     * @param loginUserId 用户id
      * @return 队伍信息
      */
-    List<Team> getCreatedTeam(Long userId, HttpServletRequest request);
+    Page<TeamVO> getCreatedTeam(Long loginUserId, HttpServletRequest request);
 
     Boolean isAdmin(User loginUser);
 

@@ -46,8 +46,6 @@ public class FriendsController {
         return ResultUtils.success(joinTeam);
     }
 
-    //
-
     /**
      * 我的好友列表
      *
