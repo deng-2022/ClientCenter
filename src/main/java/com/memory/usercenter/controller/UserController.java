@@ -12,6 +12,7 @@ import com.memory.usercenter.service.UserService;
 import com.memory.usercenter.utils.SMSUtils;
 import com.memory.usercenter.utils.ValidateCodeUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,11 +32,11 @@ import static com.memory.usercenter.constant.UserConstant.USER_LOGIN_STATE;
 
 @RestController
 @RequestMapping("/user")
-//@CrossOrigin
-//@CrossOrigin(origins = "http://localhost:7070")
 public class UserController {
     @Resource
     private UserService userService;
+    @Resource
+    private RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
 
     /**
      * 用户注册
@@ -126,7 +127,7 @@ public class UserController {
         String userPassword = userLoginRequest.getUserPassword();
         if (StringUtils.isAnyBlank(userAccount, userPassword))
             throw new BusinessException(PARMS_ERROR);
-
+        redisTemplate.opsForValue().set("1", 3);
         User userLogin = userService.userLogin(userAccount, userPassword, request);
         return ResultUtils.success(userLogin);
     }

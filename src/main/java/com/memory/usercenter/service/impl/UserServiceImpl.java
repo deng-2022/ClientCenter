@@ -146,20 +146,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         // 1.5.1.用户未注册(包含了MP自带的逻辑删除校验)
         if (one == null) throw new BusinessException(NOT_REGISTER);
 
-        // 2.修改用户状态为在线
+        // 2.修改用户状态为在线 存储到redis中 过期处理
         UpdateWrapper<User> uuw = new UpdateWrapper<>();
         uuw.eq("user_account", userAccount).set("is_online", ONLINE);
         boolean update = update(uuw);
         if (!update) {
             throw new BusinessException(UPDATE_ERROR, "用户登录失败");
         }
+//        redisTemplate.opsForValue().set(userAccount, ONLINE);
 
         // 3.脱敏用户信息
         User safetyUser = getSafetyUser(one);
         // 4.记录用户登录态
         request.getSession().setAttribute(USER_LOGIN_STATE, safetyUser);
-        // 6.存储到 redis 中
-
         // 5.返回用户信息
         return safetyUser;
     }

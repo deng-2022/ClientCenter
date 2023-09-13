@@ -5,15 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b35a969-b326-48cb-b7cb-4fac97c8ff21" name="Changes" comment="随机匹配优化 页面标题优化 用户标签优化 退出队伍优化 搜索队伍优 化 加入队伍功能实现及优化 分页查询队伍优化 主页优化 定时查询任务优化 个人信息页 优化">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/VO/TeamVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/common/WebSocketServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/config/WebSocketConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/ChatController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/DTO/Message.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/ChatService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/ChatServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/300db0fa-c680-4161-9b66-8ae3327877eb.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/300db0fa-c680-4161-9b66-8ae3327877eb.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/constant/UserConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/constant/UserConstant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/FriendsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/FriendsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/TeamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/TeamController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/TeamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/TeamService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/FriendsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/FriendsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/TeamServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/TeamServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/entity/Friends.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/entity/Friends.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/FriendsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/FriendsMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/memory/usercenter/redis/RedisTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/memory/usercenter/redis/RedisTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/FriendsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/FriendsMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,11 +154,11 @@
       <recent name="com.memory.usercenter.mapper" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.memory.picmemories.mapper" />
-      <recent name="com.memory.picmemories.controller" />
-      <recent name="com.memory.picmemories.model.entity" />
-      <recent name="com.memory.picmemories.service.impl" />
-      <recent name="com.memory.picmemories.service" />
+      <recent name="com.memory.usercenter.service.impl" />
+      <recent name="com.memory.usercenter.service" />
+      <recent name="com.memory.usercenter.controller" />
+      <recent name="com.memory.usercenter.config" />
+      <recent name="com.memory.usercenter.common" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -163,11 +170,6 @@
     <option name="openRunningConfigInTab" value="true" />
   </component>
   <component name="RunManager" selected="Spring Boot.UserCenterApplication">
-    <configuration name="PicMemoried.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
-      <script-file value="$PROJECT_DIR$/../../PicMemories/sql/PicMemoried.sql" />
-      <script-mode>FILE</script-mode>
-      <method v="2" />
-    </configuration>
     <configuration name="PicMemoriesApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="PicMemories" />
       <extension name="coverage">
@@ -196,6 +198,23 @@
       <option name="PACKAGE_NAME" value="com.memory.picmemories" />
       <option name="MAIN_CLASS_NAME" value="com.memory.picmemories.PicMemoriesApplicationTests" />
       <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="com.soywiz.korge.intellij.UpdateResourceBeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
+    <configuration name="RedisTest.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="user-center" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.memory.usercenter.redis.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.memory.usercenter.redis" />
+      <option name="MAIN_CLASS_NAME" value="com.memory.usercenter.redis.RedisTest" />
+      <option name="METHOD_NAME" value="test1" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -287,7 +306,7 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Database Script.PicMemoried.sql" />
+      <item itemvalue="JUnit.RedisTest.test1" />
       <item itemvalue="JUnit.UserServiceImplTest.loginTest" />
       <item itemvalue="JUnit.PicMemoriesApplicationTests.contextLoads" />
       <item itemvalue="JUnit.PicMemoriesApplicationTests.test" />
@@ -298,11 +317,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.RedisTest.test1" />
         <item itemvalue="JUnit.UserServiceImplTest.loginTest" />
         <item itemvalue="JUnit.PicMemoriesApplicationTests.test" />
         <item itemvalue="JUnit.PicMemoriesApplicationTests.contextLoads" />
         <item itemvalue="JUnit.WallpaperServiceImplTest.test" />
-        <item itemvalue="Database Script.PicMemoried.sql" />
       </list>
     </recent_temporary>
   </component>
@@ -541,7 +560,9 @@
       <workItem from="1694422539645" duration="12835000" />
       <workItem from="1694492092221" duration="8716000" />
       <workItem from="1694507185846" duration="608000" />
-      <workItem from="1694526578005" duration="7584000" />
+      <workItem from="1694526578005" duration="7866000" />
+      <workItem from="1694588801137" duration="3768000" />
+      <workItem from="1694594500008" duration="13519000" />
     </task>
     <task id="LOCAL-00001" summary="redission实现分布式锁, 解决了多台服务器中, 只能由一台服务器成功抢到锁并缓存用户信息">
       <created>1681828259232</created>

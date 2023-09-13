@@ -1,5 +1,6 @@
 package com.memory.usercenter.redis;
 
+import com.memory.usercenter.UserCenterApplication;
 import com.memory.usercenter.model.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
@@ -16,7 +17,7 @@ import javax.annotation.Resource;
  * Function:
  * Version 1.0
  */
-@SpringBootTest
+@SpringBootTest(classes = UserCenterApplication.class)
 @Slf4j
 public class RedisTest {
     @Resource

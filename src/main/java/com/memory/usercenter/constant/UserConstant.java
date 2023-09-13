@@ -12,8 +12,8 @@ public class UserConstant {
     public static final String USER_LOGIN_STATE = "userLoginState";
     // 加密密码前的盐值
     public static final String SALT = "memory";
-    // 登录用户 redis key
-    public static final String USER_LOGIN_INFO_REDIS = "memoryChat:user:login:session_key";
+    // 用户消息
+    public static final String USER_CHAT_MESSAGE = "memory:user:message:";
     // 管理员权限
     public static final int ADMIN_ROLE = 1;
     // 普通用户权限
