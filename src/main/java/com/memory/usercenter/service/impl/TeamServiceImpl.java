@@ -567,12 +567,11 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
             Team safetyTeam = getSafetyTeam(team);
             teamList.add(safetyTeam);
         }
-
+        // 转换teamList为teamVOList
         List<TeamVO> teamVOList = getTeamVOByTeam(teamList);
 
         Page<TeamVO> teamPage = new Page<>(1, 20);
         teamPage.setRecords(teamVOList);
-
         return teamPage;
     }
 

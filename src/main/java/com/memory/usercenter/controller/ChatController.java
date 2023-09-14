@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author 邓哈哈
@@ -33,10 +34,10 @@ public class ChatController {
      * @return 好友列表
      */
     @GetMapping("/list")
-    public BaseResponse<Message> getMessage(Long loginUserId, HttpServletRequest request) {
+    public BaseResponse<List<Message>> getMessage(Long loginUserId, HttpServletRequest request) {
         // controller对参数的校验
 
-        Message message = chatService.listMessage(loginUserId, request);
-        return ResultUtils.success(message);
+        List<Message> messageList = chatService.listMessage(loginUserId, request);
+        return ResultUtils.success(messageList);
     }
 }

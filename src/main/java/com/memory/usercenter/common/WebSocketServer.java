@@ -1,11 +1,12 @@
 package com.memory.usercenter.common;
 
 import com.google.gson.Gson;
+import com.memory.usercenter.exception.BusinessException;
 import com.memory.usercenter.model.DTO.Message;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.net.http.WebSocket;
+import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.TimeUnit;
 
@@ -48,6 +50,22 @@ public class WebSocketServer {
     //接收sid
     private String sid = "";
 
+    public static synchronized int getOnlineCount() {
+        return onlineCount;
+    }
+
+    public static synchronized void addOnlineCount() {
+        WebSocketServer.onlineCount++;
+    }
+
+    public static synchronized void subOnlineCount() {
+        WebSocketServer.onlineCount--;
+    }
+
+    public static CopyOnWriteArraySet<WebSocketServer> getWebSocketSet() {
+        return webSocketSet;
+    }
+
     /**
      * 连接建立成功调用的方法
      */
@@ -80,31 +98,22 @@ public class WebSocketServer {
     }
 
     /**
-     * 收到客户端消息后调用的方法
+     * 接受客户端发来的消息
      *
-     * @ Param message 客户端发送过来的消息
+     * @param message 消息
+     * @throws IOException IOException
      */
     @OnMessage
-    public void onMessage(String message, Session session) {
+    public void onMessage(String message) throws IOException {
         log.info("收到来自窗口" + sid + "的信息:" + message);
-        // 将 JSON 字符串 转成 Java 对象
-        Gson gson = new Gson();
-        Message newMessage = gson.fromJson(message, Message.class);
-
-        Long senderId = newMessage.getSenderId();
-        Long receiverId = newMessage.getReceiverId();
-        // 群发消息
-        // 存储信息到Redis 30min
-        ValueOperations<String, Object> ops = redisTemplate.opsForValue();
-        ops.set("memory:user:message:" + senderId, message, 30, TimeUnit.MINUTES);
-        ops.set("memory:user:message:" + receiverId, message, 30, TimeUnit.MINUTES);
-        for (WebSocketServer item : webSocketSet) {
-            try {
-                item.sendMessage(message);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        // 1.消息存放Redis
+        boolean saveMessage = saveMessage(message);
+        // 2.校验存放
+        if (!saveMessage) {
+            throw new BusinessException(ErrorCode.UPDATE_ERROR_REDIS, "用户信息存放失败");
         }
+        // 3.消息转发
+        msgForward(message, webSocketSet, sid);
     }
 
     /**
@@ -118,45 +127,105 @@ public class WebSocketServer {
     }
 
     /**
-     * 实现服务器主动推送
+     * 服务器主动推送
+     *
+     * @param message 消息
+     * @throws IOException IOException
      */
     public void sendMessage(String message) throws IOException {
         this.session.getBasicRemote().sendText(message);
     }
 
     /**
-     * 群发自定义消息
+     * 消息转发
+     *
+     * @param message      消息
+     * @param webSocketSet webSocketSet
+     * @param sid          转发用户id
      */
-    public static void sendInfo(String message, @PathParam("sid") String sid) throws IOException {
-        log.info("推送消息到窗口" + sid + "，推送内容:" + message);
-
+    public void msgForward(String message, CopyOnWriteArraySet<WebSocketServer> webSocketSet, String sid) {
         for (WebSocketServer item : webSocketSet) {
             try {
                 //这里可以设定只推送给这个sid的，为null则全部推送
-                if (sid == null) {
-// item.sendMessage(message);
-                } else if (item.sid.equals(sid)) {
+                if (item.sid.equals(sid)) {
+                    item.sendMessage(message);
+                }else {
                     item.sendMessage(message);
                 }
             } catch (IOException e) {
-                continue;
+                e.printStackTrace();
             }
         }
     }
 
-    public static synchronized int getOnlineCount() {
-        return onlineCount;
+
+    /**
+     * 存放消息到Redis 用户id -> (key: UUID, value: message)
+     *
+     * @param message 消息
+     * @return 存放成功与否
+     */
+    public boolean saveMessage(String message) {
+        // 3.存储信息到Redis 30min
+        // 3.1.设置key
+        String msgKey = "memory:user:message:";
+        // 3.2.获取发送者 接收者
+        Message sendMes = getSendMes(message);
+        String senderMsgKey = msgKey + sendMes.getSenderId();
+        String receiverMsgKey = msgKey + sendMes.getReceiverId();
+        // 3.3.存放message
+        HashOperations<String, Object, Object> opsForHash = redisTemplate.opsForHash();
+        opsForHash.put(senderMsgKey, generateMessageId(), message);
+        opsForHash.put(receiverMsgKey, generateMessageId(), message);
+        // 3.3.设置键的过期时间，单位为h
+        long expireTime = 2; // 设置为2hour
+        redisTemplate.expire(senderMsgKey, expireTime, TimeUnit.HOURS);
+        redisTemplate.expire(receiverMsgKey, expireTime, TimeUnit.HOURS);
+        return true;
     }
 
-    public static synchronized void addOnlineCount() {
-        WebSocketServer.onlineCount++;
+//        String msgKey = "memory:user:message:";
+//        HashOperations<String, Object, Object> opsForHash = redisTemplate.opsForHash();
+//        String senderMsgKey = msgKey + senderId;
+//        String receiverMsgKey = msgKey + receiverId;
+//        long expireTime = 2; // 设置为2hour
+//        redisTemplate.execute(new SessionCallback<Object>() {
+//            @Override
+//            public Object execute(RedisOperations operations) throws DataAccessException {
+//                operations.multi(); // 开始事务
+//                operations.opsForHash().put(senderMsgKey, generateMessageId(), message);
+//                operations.opsForHash().put(receiverMsgKey, generateMessageId(), message);
+//                operations.expire(senderMsgKey, expireTime, TimeUnit.HOURS);
+//                operations.expire(receiverMsgKey, expireTime, TimeUnit.HOURS);
+//                operations.exec(); // 提交事务
+//                return null;
+//            }
+//        });
+
+    /**
+     * 解析消息 -> 发送者 接收者
+     *
+     * @param message 消息
+     * @return message
+     */
+    private Message getSendMes(String message) {
+        // 1.将JSON字符串 转成Java对象
+        Gson gson = new Gson();
+        Message newMessage = gson.fromJson(message, Message.class);
+        if (newMessage == null) {
+            throw new BusinessException(ErrorCode.PARMS_ERROR, "服务器解析消息失败");
+        }
+        return newMessage;
     }
 
-    public static synchronized void subOnlineCount() {
-        WebSocketServer.onlineCount--;
-    }
-
-    public static CopyOnWriteArraySet<WebSocketServer> getWebSocketSet() {
-        return webSocketSet;
+    /**
+     * 生成消息id
+     *
+     * @return 消息id
+     */
+    private String generateMessageId() {
+        // 随机生成一个唯一的消息ID
+        UUID messageId = UUID.randomUUID();
+        return messageId.toString();
     }
 }

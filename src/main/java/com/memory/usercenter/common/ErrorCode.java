@@ -15,6 +15,7 @@ public enum ErrorCode {
     NOT_REGISTER(40004, "未注册", ""),
     NO_AUTH(40005, "无权限", ""),
     CODE_ERROR(40006, "验证码错误", ""),
+    UPDATE_ERROR_REDIS(40006, "操作Redis失败", ""),
     SYSTEM_ERROR(10000, "系统内部异常", "");
 
     /**
