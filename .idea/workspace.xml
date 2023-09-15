@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b35a969-b326-48cb-b7cb-4fac97c8ff21" name="Changes" comment="随机匹配优化 页面标题优化 用户标签优化 退出队伍优化 搜索队伍优 化 加入队伍功能实现及优化 分页查询队伍优化 主页优化 定时查询任务优化 个人信息页 优化">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/utils/RedisUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/common/ErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/common/ErrorCode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/common/WebSocketServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/common/WebSocketServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/ChatController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/ChatService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/ChatService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/ChatServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/ChatServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/TeamServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/TeamServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -557,6 +553,10 @@
       <workItem from="1694594500008" duration="15079000" />
       <workItem from="1694664310435" duration="8573000" />
       <workItem from="1694692480714" duration="7718000" />
+      <workItem from="1694733322032" duration="10000" />
+      <workItem from="1694733358076" duration="6000" />
+      <workItem from="1694749381478" duration="4087000" />
+      <workItem from="1694765272482" duration="1299000" />
     </task>
     <task id="LOCAL-00001" summary="redission实现分布式锁, 解决了多台服务器中, 只能由一台服务器成功抢到锁并缓存用户信息">
       <created>1681828259232</created>

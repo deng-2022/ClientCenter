@@ -4,18 +4,15 @@ import com.google.gson.Gson;
 import com.memory.usercenter.exception.BusinessException;
 import com.memory.usercenter.model.DTO.Message;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
-import org.springframework.data.redis.core.*;
+import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
-import java.net.http.WebSocket;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.TimeUnit;
@@ -76,7 +73,7 @@ public class WebSocketServer {
         this.sid = sid;
         addOnlineCount(); //在线数加1
         try {
-            sendMessage("conn_success");
+            sendMessage(new Gson().toJson("连接成功"));
             log.info("有新窗口开始监听:" + sid + ",当前在线人数为:" + getOnlineCount());
         } catch (IOException e) {
             log.error("websocket IO Exception");
@@ -94,7 +91,6 @@ public class WebSocketServer {
         log.info("释放的sid为：" + sid);
         //这里写你 释放的时候，要处理的业务
         log.info("有一连接关闭！当前在线人数为" + getOnlineCount());
-
     }
 
     /**
@@ -149,7 +145,7 @@ public class WebSocketServer {
                 //这里可以设定只推送给这个sid的，为null则全部推送
                 if (item.sid.equals(sid)) {
                     item.sendMessage(message);
-                }else {
+                } else {
                     item.sendMessage(message);
                 }
             } catch (IOException e) {
@@ -174,13 +170,18 @@ public class WebSocketServer {
         String senderMsgKey = msgKey + sendMes.getSenderId();
         String receiverMsgKey = msgKey + sendMes.getReceiverId();
         // 3.3.存放message
-        HashOperations<String, Object, Object> opsForHash = redisTemplate.opsForHash();
-        opsForHash.put(senderMsgKey, generateMessageId(), message);
-        opsForHash.put(receiverMsgKey, generateMessageId(), message);
-        // 3.3.设置键的过期时间，单位为h
-        long expireTime = 2; // 设置为2hour
-        redisTemplate.expire(senderMsgKey, expireTime, TimeUnit.HOURS);
-        redisTemplate.expire(receiverMsgKey, expireTime, TimeUnit.HOURS);
+        try {
+            HashOperations<String, Object, Object> opsForHash = redisTemplate.opsForHash();
+            opsForHash.put(senderMsgKey, generateMessageId(), message);
+            opsForHash.put(receiverMsgKey, generateMessageId(), message);
+            // 3.3.设置键的过期时间，单位为h
+            long expireTime = 2; // 设置为2hour
+            redisTemplate.expire(senderMsgKey, expireTime, TimeUnit.HOURS);
+            redisTemplate.expire(receiverMsgKey, expireTime, TimeUnit.HOURS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
         return true;
     }
 
