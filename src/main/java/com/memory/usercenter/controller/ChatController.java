@@ -7,6 +7,7 @@ import com.memory.usercenter.model.DTO.Message;
 import com.memory.usercenter.model.entity.User;
 import com.memory.usercenter.service.ChatService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,10 +35,10 @@ public class ChatController {
      * @return 好友列表
      */
     @GetMapping("/list")
-    public BaseResponse<List<Message>> getMessage(Long loginUserId, HttpServletRequest request) {
+    public BaseResponse<List<Message>> getMessage(Long senderId, Long receiverId, HttpServletRequest request) {
         // controller对参数的校验
 
-        List<Message> messageList = chatService.listMessage(loginUserId, request);
+        List<Message> messageList = chatService.listMessage(senderId, receiverId, request);
         return ResultUtils.success(messageList);
     }
 }

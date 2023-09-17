@@ -1,5 +1,7 @@
 package com.memory.usercenter.common;
 
+import java.util.Date;
+
 import com.google.gson.Gson;
 import com.memory.usercenter.exception.BusinessException;
 import com.memory.usercenter.model.DTO.Message;
@@ -167,6 +169,14 @@ public class WebSocketServer {
         String msgKey = "memory:user:message:";
         // 3.2.获取发送者 接收者
         Message sendMes = getSendMes(message);
+
+        Long senderId = sendMes.getSenderId();
+        Long receiverId = sendMes.getReceiverId();
+        String content = sendMes.getContent();
+        Date sendTime = sendMes.getSendTime();
+        if (senderId == null || receiverId == null || content == null || sendTime == null) {
+            throw new BusinessException(ErrorCode.NULL_ERROR, "请求转发的消息为空");
+        }
         String senderMsgKey = msgKey + sendMes.getSenderId();
         String receiverMsgKey = msgKey + sendMes.getReceiverId();
         // 3.3.存放message

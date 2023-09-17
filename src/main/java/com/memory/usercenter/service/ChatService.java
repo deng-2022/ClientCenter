@@ -10,5 +10,5 @@ import java.util.List;
  * 聊天信息处理
  */
 public interface ChatService {
-    List<Message> listMessage(Long loginUserId, HttpServletRequest request);
+    List<Message> listMessage(Long senderId, Long receiverId, HttpServletRequest request);
 }

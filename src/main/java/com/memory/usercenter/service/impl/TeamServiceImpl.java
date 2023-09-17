@@ -680,6 +680,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
         team.setMaxNum(originTeam.getMaxNum());
         team.setJoinNum(originTeam.getJoinNum());
         team.setStatus(originTeam.getStatus());
+        team.setImgUrl(originTeam.getImgUrl());
         team.setCreateTime(originTeam.getCreateTime());
         team.setExpireTime(originTeam.getExpireTime());
 
