@@ -53,6 +53,39 @@ create table if not exists user_team
 )
     comment '用户队伍关系表';
 
+
+-- auto-generated definition
+create table article
+(
+    id          bigint                                 not null comment '文章id',
+    title       varchar(256)                           not null comment '文章标题',
+    description varchar(256)                           not null comment '文章摘要',
+    content     varchar(2048)                          not null comment '文章内容',
+    author      bigint                                 not null comment '创作者',
+    view        int          default 0                 null comment '浏览量',
+    likes       int          default 0                 null comment '点赞量',
+    comments    varchar(256) default '0'               null comment '评论量',
+    create_time datetime     default CURRENT_TIMESTAMP null comment '创建时间',
+    update_time datetime     default CURRENT_TIMESTAMP null comment '更新时间',
+    is_delete   tinyint      default 0                 null comment '逻辑删除'
+)
+    comment '博文';
+
+-- auto-generated definition
+create table friends
+(
+    id          bigint auto_increment comment 'id'
+        primary key,
+    user_id     bigint                               null comment '用户id',
+    friend_id   bigint                               null comment '好友id',
+    note        varchar(8)                           null comment '好友备注',
+    create_time datetime   default CURRENT_TIMESTAMP null comment '创建时间',
+    update_time datetime   default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP,
+    is_delete   tinyint(1) default 0                 not null comment '是否删除'
+)
+    comment '好友表';
+
+
 -- 访客表
 create table if not exists visitor
 (
@@ -69,20 +102,6 @@ create table if not exists visitor
 )
     comment '访客表';
 
--- 好友表
-use memory;
-create table if not exists friends
-(
-    id         bigint auto_increment comment 'id' primary key,
-    userId     bigint                               null comment '用户id',
-    friendId   bigint                               null comment '好友id',
-    note       varchar(8)                           null comment '好友备注',
-    friendUrl  varchar(64)                          null comment '好友头像',
-    createTime datetime   default CURRENT_TIMESTAMP null comment '创建时间',
-    updateTime datetime   default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP,
-    isDelete   tinyint(1) default 0                 not null comment '是否删除'
-)
-    comment '好友表';
 
 -- 消息表
 create table if not exists chat

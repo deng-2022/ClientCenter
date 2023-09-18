@@ -254,17 +254,17 @@ public class UserController {
     /**
      * 用户匹配
      *
-     * @param num     推荐/匹配数目
+     * @param matchNum     推荐/匹配数目
      * @param request request 获取登陆用户
      * @return 匹配到的用户
      */
     @GetMapping("/match")
-    public BaseResponse<List<User>> matchUsers(Integer num, HttpServletRequest request) {
+    public BaseResponse<Page<User>> matchUsers(Integer matchNum, HttpServletRequest request) {
         // controller对参数的校验
-        if (num == null)
+        if (matchNum == null)
             throw new BusinessException(PARMS_ERROR);
 
-        List<User> userList = userService.matchUsers(num, request);
+        Page<User> userList = userService.matchUsers(matchNum, request);
         return ResultUtils.success(userList);
     }
 

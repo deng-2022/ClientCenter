@@ -445,14 +445,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     /**
-     * 用户匹配
+     * 用户匹配(根据用户标签，计算相似度)
      *
-     * @param num     推荐/匹配数目
-     * @param request request 获取登陆用户
+     * @param matchNum 推荐/匹配数目
+     * @param request  request 获取登陆用户
      * @return 匹配到的用户
      */
     @Override
-    public List<User> matchUsers(long num, HttpServletRequest request) {
+    public Page<User> matchUsers(long matchNum, HttpServletRequest request) {
         // 1.获取登录用户标签(json字符串 -> List列表)
         User loginUser = getLoginUser(request);
 
@@ -462,7 +462,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         List<User> userList = (List<User>) redisTemplate.opsForValue().get(redisKey);
         // 缓存命中, 则返回用户信息
         if (userList != null) {
-            return userList;
+            new Page<User>().setRecords(userList);
         }
 
         // 缓存未命中, 查询数据库
@@ -497,7 +497,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
 
         // 3.按编辑距离由小到大排序
-        List<Pair<User, Long>> sortedUserDistanceList = userDistanceList.stream().sorted((a, b) -> (int) (a.getB() - b.getB())).limit(num).collect(Collectors.toList());
+        List<Pair<User, Long>> sortedUserDistanceList = userDistanceList.stream().sorted((a, b) -> (int) (a.getB() - b.getB())).limit(matchNum).collect(Collectors.toList());
 
         // 4.有顺序的userID列表
         List<Long> userIdList = sortedUserDistanceList.stream().map(pair -> pair.getA().getId()).collect(Collectors.toList());
@@ -513,15 +513,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             finalUserList.add(userIdUserListMap.get(userId).get(0));
         }
 
-        // 将匹配到的用户信息写到缓存中
+        // 7.将匹配到的用户信息写到缓存中
         try {
-            redisTemplate.opsForValue().set(redisKey, finalUserList, 6, TimeUnit.HOURS);
+            redisTemplate.opsForValue().set(redisKey, finalUserList, 7, TimeUnit.DAYS);
         } catch (Exception e) {
             log.error("redis set key error", e);
         }
 
-        // 7.返回匹配用户列表
-        return finalUserList;
+        // 8.返回匹配用户列表
+        return new Page<User>().setRecords(finalUserList);
     }
 
 
