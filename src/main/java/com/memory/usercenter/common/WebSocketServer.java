@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.google.gson.Gson;
 import com.memory.usercenter.exception.BusinessException;
-import com.memory.usercenter.model.DTO.Message;
+import com.memory.usercenter.model.entity.Message;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;

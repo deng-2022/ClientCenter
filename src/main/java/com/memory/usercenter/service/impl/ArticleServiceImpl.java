@@ -3,7 +3,7 @@ package com.memory.usercenter.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.memory.usercenter.model.DTO.ArticleDTO;
+import com.memory.usercenter.model.DTO.artical.ArticleDTO;
 import com.memory.usercenter.model.entity.Article;
 import com.memory.usercenter.service.ArticleService;
 import com.memory.usercenter.mapper.ArticleMapper;

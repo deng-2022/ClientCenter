@@ -1,4 +1,4 @@
-package com.memory.usercenter.model.request.friends;
+package com.memory.usercenter.model.DTO.friends;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

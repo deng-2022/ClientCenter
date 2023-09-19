@@ -1,4 +1,4 @@
-package com.memory.usercenter.model.request.user;
+package com.memory.usercenter.model.DTO.user;
 
 import lombok.Data;
 

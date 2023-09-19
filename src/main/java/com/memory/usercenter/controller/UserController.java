@@ -2,12 +2,12 @@ package com.memory.usercenter.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.memory.usercenter.common.BaseResponse;
-import com.memory.usercenter.common.ErrorCode;
 import com.memory.usercenter.common.ResultUtils;
 import com.memory.usercenter.exception.BusinessException;
+import com.memory.usercenter.model.VO.UserVO;
 import com.memory.usercenter.model.entity.User;
-import com.memory.usercenter.model.request.user.UserLogin;
-import com.memory.usercenter.model.request.user.UserRegister;
+import com.memory.usercenter.model.DTO.user.UserLogin;
+import com.memory.usercenter.model.DTO.user.UserRegister;
 import com.memory.usercenter.service.UserService;
 import com.memory.usercenter.utils.SMSUtils;
 import com.memory.usercenter.utils.ValidateCodeUtils;
@@ -254,18 +254,18 @@ public class UserController {
     /**
      * 用户匹配
      *
-     * @param matchNum     推荐/匹配数目
-     * @param request request 获取登陆用户
+     * @param matchNum 推荐/匹配数目
+     * @param request  request 获取登陆用户
      * @return 匹配到的用户
      */
     @GetMapping("/match")
-    public BaseResponse<Page<User>> matchUsers(Integer matchNum, HttpServletRequest request) {
+    public BaseResponse<Page<UserVO>> matchUsers(Integer matchNum, HttpServletRequest request) {
         // controller对参数的校验
         if (matchNum == null)
             throw new BusinessException(PARMS_ERROR);
 
-        Page<User> userList = userService.matchUsers(matchNum, request);
-        return ResultUtils.success(userList);
+        Page<UserVO> userVOList = userService.matchUsers(matchNum, request);
+        return ResultUtils.success(userVOList);
     }
 
 }

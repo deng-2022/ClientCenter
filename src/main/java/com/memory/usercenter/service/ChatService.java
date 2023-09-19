@@ -1,9 +1,8 @@
 package com.memory.usercenter.service;
 
-import com.memory.usercenter.model.DTO.Message;
+import com.memory.usercenter.model.entity.Message;
 
 import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.Member;
 import java.util.List;
 
 /**

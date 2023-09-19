@@ -6,14 +6,12 @@ import com.memory.usercenter.common.ErrorCode;
 import com.memory.usercenter.common.ResultUtils;
 import com.memory.usercenter.exception.BusinessException;
 import com.memory.usercenter.model.entity.User;
-import com.memory.usercenter.model.request.friends.FriendsAdd;
-import com.memory.usercenter.model.request.team.TeamJoin;
+import com.memory.usercenter.model.DTO.friends.FriendsAdd;
 import com.memory.usercenter.service.FriendsService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 /**
  * @author 邓哈哈

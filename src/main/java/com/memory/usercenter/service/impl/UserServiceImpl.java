@@ -1,6 +1,5 @@
 package com.memory.usercenter.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -9,6 +8,9 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.memory.usercenter.common.ErrorCode;
 import com.memory.usercenter.exception.BusinessException;
+import com.memory.usercenter.model.VO.TeamVO;
+import com.memory.usercenter.model.VO.UserVO;
+import com.memory.usercenter.model.entity.Team;
 import com.memory.usercenter.model.entity.User;
 import com.memory.usercenter.service.UserService;
 import com.memory.usercenter.mapper.UserMapper;
@@ -18,7 +20,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.jboss.marshalling.Pair;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
@@ -28,6 +29,7 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static com.memory.usercenter.common.ErrorCode.*;
 import static com.memory.usercenter.constant.UserConstant.*;
@@ -452,7 +454,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      * @return 匹配到的用户
      */
     @Override
-    public Page<User> matchUsers(long matchNum, HttpServletRequest request) {
+    public Page<UserVO> matchUsers(long matchNum, HttpServletRequest request) {
         // 1.获取登录用户标签(json字符串 -> List列表)
         User loginUser = getLoginUser(request);
 
@@ -479,6 +481,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         userList = this.list(queryWrapper);
         // 2.2.使用SortedMap容器
         List<Pair<User, Long>> userDistanceList = new ArrayList<>();
+        // 存放匹配度
+        ArrayList<Double> distanceList = new ArrayList<>();
         for (User user : userList) {
             // 2.2.1.拿到用户
             // 2.2.2.拿到其标签
@@ -491,10 +495,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             List<String> userTagList = gson.fromJson(userTags, new TypeToken<List<String>>() {
             }.getType());
             // 2.2.5.进行标签比较(编辑距离算法)
+            // 计算编辑距离
             long distance = AlgorithmUtils.minDistance(tagList, userTagList);
+            // 计算匹配度
+            double percentage = getPercentage(distance);
+            // 存放匹配度
+            distanceList.add(percentage);
             // 2.2.6.将比较结果存入SortedMap容器中(存储了用户下标和匹配度, 并按distance升序排列)
             userDistanceList.add(new Pair<>(user, distance));
         }
+
 
         // 3.按编辑距离由小到大排序
         List<Pair<User, Long>> sortedUserDistanceList = userDistanceList.stream().sorted((a, b) -> (int) (a.getB() - b.getB())).limit(matchNum).collect(Collectors.toList());
@@ -513,15 +523,34 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             finalUserList.add(userIdUserListMap.get(userId).get(0));
         }
 
+        // 存放匹配度
+        List<UserVO> finalUserVOList = getUserVOByUser(finalUserList, distanceList);
+
         // 7.将匹配到的用户信息写到缓存中
         try {
-            redisTemplate.opsForValue().set(redisKey, finalUserList, 7, TimeUnit.DAYS);
+            redisTemplate.opsForValue().set(redisKey, finalUserVOList, 7, TimeUnit.DAYS);
         } catch (Exception e) {
             log.error("redis set key error", e);
         }
 
         // 8.返回匹配用户列表
-        return new Page<User>().setRecords(finalUserList);
+        return new Page<UserVO>().setRecords(finalUserVOList);
+    }
+
+    /**
+     * 计算匹配度
+     *
+     * @param distance 编辑距离
+     * @return 匹配度
+     */
+    public double getPercentage(long distance) {
+        // 计算匹配度的百分比
+        double percentage = (1 - (distance - MIN_DISTANCE) / (MAX_DISTANCE - MIN_DISTANCE)) * 100;
+        // 将 double 数据保留小数点后两位，并转换为字符串
+        String formattedNumber = String.format("%.2f", percentage);
+        System.out.println(formattedNumber);
+        // 将String转换为Double
+        return Double.parseDouble(formattedNumber);
     }
 
 
@@ -551,6 +580,43 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         safetyUser.setTags(originUser.getTags());
 
         return safetyUser;
+    }
+
+    /**
+     * 转换 userList 为 userVOList
+     *
+     * @param userList userList
+     * @return teamVOList
+     */
+    public List<UserVO> getUserVOByUser(List<User> userList, List<Double> distanceList) {
+        return IntStream.range(0, userList.size())
+                .mapToObj(i -> {
+                    User user = userList.get(i);
+                    double distance = distanceList.get(i);
+
+                    UserVO userVO = new UserVO();
+                    userVO.setPercentage(distance);
+                    userVO.setId(user.getId());
+                    userVO.setUserAccount(user.getUserAccount());
+                    userVO.setUsername(user.getUsername());
+                    userVO.setUserPassword(user.getUserPassword());
+                    userVO.setAvatarUrl(user.getAvatarUrl());
+                    userVO.setGender(user.getGender());
+                    userVO.setPhone(user.getPhone());
+                    userVO.setEmail(user.getEmail());
+                    userVO.setUserStatus(user.getUserStatus());
+                    userVO.setIsOnline(user.getIsOnline());
+                    userVO.setCreateTime(user.getCreateTime());
+                    userVO.setUpdateTime(user.getUpdateTime());
+                    userVO.setIsDelete(user.getIsDelete());
+                    userVO.setUserRole(user.getUserRole());
+                    userVO.setPlanetCode(user.getPlanetCode());
+                    userVO.setTags(user.getTags());
+                    userVO.setProfile(user.getProfile());
+
+                    return userVO;
+                })
+                .collect(Collectors.toList());
     }
 
 

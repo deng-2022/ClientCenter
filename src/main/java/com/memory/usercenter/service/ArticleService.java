@@ -1,7 +1,7 @@
 package com.memory.usercenter.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.memory.usercenter.model.DTO.ArticleDTO;
+import com.memory.usercenter.model.DTO.artical.ArticleDTO;
 import com.memory.usercenter.model.entity.Article;
 import com.baomidou.mybatisplus.extension.service.IService;
 

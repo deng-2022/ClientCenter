@@ -3,18 +3,15 @@ package com.memory.usercenter.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.memory.usercenter.common.BaseResponse;
 import com.memory.usercenter.common.ResultUtils;
-import com.memory.usercenter.model.DTO.ArticleDTO;
-import com.memory.usercenter.model.DTO.Message;
+import com.memory.usercenter.model.DTO.artical.ArticleDTO;
 import com.memory.usercenter.model.entity.Article;
 import com.memory.usercenter.service.ArticleService;
-import com.memory.usercenter.service.ChatService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 /**
  * @author 邓哈哈

@@ -1,4 +1,4 @@
-package com.memory.usercenter.model.request.team;
+package com.memory.usercenter.model.DTO.team;
 
 import lombok.Data;
 

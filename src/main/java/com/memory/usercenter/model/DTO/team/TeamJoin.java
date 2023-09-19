@@ -1,34 +1,30 @@
-package com.memory.usercenter.model.request.team;
+package com.memory.usercenter.model.DTO.team;
 
 import lombok.Data;
 
 /**
  * @author 邓哈哈
- * 2023/4/26 14:00
- * Function: 修改队伍参数
+ * 2023/4/27 21:04
+ * Function: 加入队伍参数
  * Version 1.0
  */
+
 @Data
-public class TeamUpdate {
-    /***
+public class TeamJoin {
+    /**
      * 队伍id
      */
     private Long id;
 
-    /***
+    /**
      * 队长id
      */
     private Long userId;
 
     /**
-     * 队伍名称
+     * 最大人数
      */
-    private String name;
-
-    /**
-     * 描述
-     */
-    private String description;
+    private Integer maxNum;
 
     /**
      * 0 - 公开，1 - 私有，2 - 加密
@@ -39,4 +35,9 @@ public class TeamUpdate {
      * 密码
      */
     private String password;
+
+    /**
+     * 成员数量
+     */
+    private Integer joinNum;
 }

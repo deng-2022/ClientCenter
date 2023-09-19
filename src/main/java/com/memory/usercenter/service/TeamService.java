@@ -1,14 +1,13 @@
 package com.memory.usercenter.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.memory.usercenter.model.DTO.team.*;
 import com.memory.usercenter.model.VO.TeamVO;
 import com.memory.usercenter.model.entity.Team;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.memory.usercenter.model.entity.User;
-import com.memory.usercenter.model.request.team.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 /**
  * @author Lenovo

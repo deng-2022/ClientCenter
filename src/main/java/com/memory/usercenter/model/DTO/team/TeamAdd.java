@@ -1,4 +1,4 @@
-package com.memory.usercenter.model.request.team;
+package com.memory.usercenter.model.DTO.team;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;

@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.memory.usercenter.model.entity.Friends;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.memory.usercenter.model.entity.User;
-import com.memory.usercenter.model.request.friends.FriendsAdd;
+import com.memory.usercenter.model.DTO.friends.FriendsAdd;
 
 import javax.servlet.http.HttpServletRequest;
 

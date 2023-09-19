@@ -5,15 +5,14 @@ import com.memory.usercenter.common.BaseResponse;
 import com.memory.usercenter.common.ErrorCode;
 import com.memory.usercenter.common.ResultUtils;
 import com.memory.usercenter.exception.BusinessException;
+import com.memory.usercenter.model.DTO.team.*;
 import com.memory.usercenter.model.VO.TeamVO;
 import com.memory.usercenter.model.entity.Team;
-import com.memory.usercenter.model.request.team.*;
 import com.memory.usercenter.service.TeamService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 /**
  * @author 邓哈哈

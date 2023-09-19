@@ -2,19 +2,14 @@ package com.memory.usercenter.service.impl;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.memory.usercenter.common.BaseResponse;
-import com.memory.usercenter.common.ResultUtils;
-import com.memory.usercenter.exception.BusinessException;
-import com.memory.usercenter.model.DTO.Message;
+import com.memory.usercenter.model.entity.Message;
 import com.memory.usercenter.service.ChatService;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import java.lang.reflect.Type;
 import java.util.*;
 
 import static com.memory.usercenter.constant.UserConstant.USER_CHAT_MESSAGE;

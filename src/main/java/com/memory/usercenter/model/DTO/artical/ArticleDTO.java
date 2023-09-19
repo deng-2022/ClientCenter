@@ -1,5 +1,6 @@
-package com.memory.usercenter.model.DTO;
+package com.memory.usercenter.model.DTO.artical;
 
+import com.memory.usercenter.model.DTO.common.CommonDTO;
 import lombok.Data;
 
 /**

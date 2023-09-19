@@ -22,6 +22,10 @@ public class UserConstant {
     public static final int ONLINE = 1;
     // 用户下线
     public static final int OFFLINE = 0;
+    // 最小匹配距离
+    public static final double MIN_DISTANCE = 0;
+    // 最大匹配距离
+    public static final double MAX_DISTANCE = 6;
 
 
 }

@@ -11,7 +11,7 @@ import com.memory.usercenter.common.ErrorCode;
 import com.memory.usercenter.exception.BusinessException;
 import com.memory.usercenter.model.entity.Friends;
 import com.memory.usercenter.model.entity.User;
-import com.memory.usercenter.model.request.friends.FriendsAdd;
+import com.memory.usercenter.model.DTO.friends.FriendsAdd;
 import com.memory.usercenter.service.FriendsService;
 import com.memory.usercenter.mapper.FriendsMapper;
 import com.memory.usercenter.service.UserService;

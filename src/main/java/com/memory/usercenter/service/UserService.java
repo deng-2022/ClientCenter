@@ -1,6 +1,7 @@
 package com.memory.usercenter.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.memory.usercenter.model.VO.UserVO;
 import com.memory.usercenter.model.entity.Team;
 import com.memory.usercenter.model.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -46,5 +47,5 @@ public interface UserService extends IService<User> {
 
     User getLoginUser(HttpServletRequest request);
 
-    Page<User> matchUsers(long matchNum, HttpServletRequest request);
+    Page<UserVO> matchUsers(long matchNum, HttpServletRequest request);
 }
