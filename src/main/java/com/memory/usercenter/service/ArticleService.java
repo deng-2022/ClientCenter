@@ -2,6 +2,7 @@ package com.memory.usercenter.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.memory.usercenter.model.DTO.artical.ArticleDTO;
+import com.memory.usercenter.model.VO.ArticleVO;
 import com.memory.usercenter.model.entity.Article;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -21,5 +22,14 @@ public interface ArticleService extends IService<Article> {
      * @param request
      * @return
      */
-    Page<Article> listArticle(ArticleDTO articleDTO, HttpServletRequest request);
+    Page<ArticleVO> listArticle(ArticleDTO articleDTO, HttpServletRequest request);
+
+    /**
+     * 获取文章
+     *
+     * @param articleDTO
+     * @param request
+     * @return
+     */
+    ArticleVO getArticle(ArticleDTO articleDTO, HttpServletRequest request);
 }

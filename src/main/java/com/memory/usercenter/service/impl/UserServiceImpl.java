@@ -505,7 +505,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             userDistanceList.add(new Pair<>(user, distance));
         }
 
-
         // 3.按编辑距离由小到大排序
         List<Pair<User, Long>> sortedUserDistanceList = userDistanceList.stream().sorted((a, b) -> (int) (a.getB() - b.getB())).limit(matchNum).collect(Collectors.toList());
 

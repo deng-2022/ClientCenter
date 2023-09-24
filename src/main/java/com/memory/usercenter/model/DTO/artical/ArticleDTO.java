@@ -32,11 +32,6 @@ public class ArticleDTO extends CommonDTO {
     private String content;
 
     /**
-     * 创作者
-     */
-    private Long author;
-
-    /**
      * 浏览量
      */
     private Integer view;
@@ -50,4 +45,9 @@ public class ArticleDTO extends CommonDTO {
      * 评论量
      */
     private String comments;
+
+    /**
+     * 创作者
+     */
+    private Long authorId;
 }

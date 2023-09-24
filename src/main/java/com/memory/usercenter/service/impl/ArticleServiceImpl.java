@@ -4,13 +4,20 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.memory.usercenter.model.DTO.artical.ArticleDTO;
+import com.memory.usercenter.model.VO.ArticleVO;
+import com.memory.usercenter.model.VO.TeamVO;
 import com.memory.usercenter.model.entity.Article;
+import com.memory.usercenter.model.entity.Team;
+import com.memory.usercenter.model.entity.User;
 import com.memory.usercenter.service.ArticleService;
 import com.memory.usercenter.mapper.ArticleMapper;
+import com.memory.usercenter.service.UserService;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Lenovo
@@ -20,6 +27,8 @@ import java.util.List;
 @Service
 public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>
         implements ArticleService {
+    @Resource
+    private UserService userService;
 
     /**
      * 获取文章列表
@@ -29,18 +38,91 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>
      * @return
      */
     @Override
-    public Page<Article> listArticle(ArticleDTO articleDTO, HttpServletRequest request) {
+    public Page<ArticleVO> listArticle(ArticleDTO articleDTO, HttpServletRequest request) {
+        // 获取页码
         Integer currentPage = articleDTO.getCurrentPage();
         Integer pageSize = articleDTO.getPageSize();
-
+        // 搜索条件
         QueryWrapper<Article> aqw = new QueryWrapper<>();
-
+        // 博文列表
         List<Article> articleList = list(aqw);
+        // 封装文章和作者信息
+        List<ArticleVO> articleVOList = getArticleVOByArticle(articleList);
+        // 封装Page
+        Page<ArticleVO> articleVOPage = new Page<>(currentPage, pageSize);
+        articleVOPage.setRecords(articleVOList);
+        return articleVOPage;
+    }
 
-        Page<Article> articlePage = new Page<>(currentPage, pageSize);
-        articlePage.setRecords(articleList);
+    /**
+     * 获取文章信息
+     *
+     * @param articleDTO
+     * @param request
+     * @return
+     */
+    @Override
+    public ArticleVO getArticle(ArticleDTO articleDTO, HttpServletRequest request) {
+        Long id = articleDTO.getId();
+        // 获取文章
+        Article article = getById(id);
+        // 封装文章和作者信息
+        return getArticleVOByArticle(article);
 
-        return articlePage;
+    }
+
+    /**
+     * 转换articleList 为 articleVOList
+     *
+     * @param articleList articleList
+     * @return articleVOList
+     */
+    public List<ArticleVO> getArticleVOByArticle(List<Article> articleList) {
+        return articleList.stream().map(article -> {
+            Long authorId = article.getAuthorId();
+            User author = userService.getById(authorId);
+            ArticleVO articleVO = new ArticleVO();
+
+            articleVO.setId(article.getId());
+            ;
+            articleVO.setTitle(article.getTitle());
+            articleVO.setDescription(article.getDescription());
+            articleVO.setContent(article.getContent());
+            articleVO.setView(article.getView());
+            articleVO.setLikes(article.getLikes());
+            articleVO.setComments(article.getComments());
+            articleVO.setAuthor(author);
+            articleVO.setCreateTime(article.getCreateTime());
+            articleVO.setUpdateTime(article.getUpdateTime());
+
+            return articleVO;
+        }).collect(Collectors.toList());
+    }
+
+    /**
+     * articleVO 为 articleVO
+     *
+     * @param article article
+     * @return articleVO
+     */
+    public ArticleVO getArticleVOByArticle(Article article) {
+        Long authorId = article.getAuthorId();
+        User author = userService.getById(authorId);
+        ArticleVO articleVO = new ArticleVO();
+
+        articleVO.setId(article.getId());
+        ;
+        articleVO.setTitle(article.getTitle());
+        articleVO.setDescription(article.getDescription());
+        articleVO.setContent(article.getContent());
+        articleVO.setView(article.getView());
+        articleVO.setLikes(article.getLikes());
+        articleVO.setComments(article.getComments());
+        articleVO.setAuthor(author);
+        articleVO.setCreateTime(article.getCreateTime());
+        articleVO.setUpdateTime(article.getUpdateTime());
+
+        return articleVO;
     }
 }
 

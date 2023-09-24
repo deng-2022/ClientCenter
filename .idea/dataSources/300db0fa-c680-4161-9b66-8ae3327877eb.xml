@@ -914,7 +914,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="273" parent="264" name="author">
+    <column id="273" parent="264" name="author_id">
       <Comment>创作者</Comment>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
@@ -1208,7 +1208,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="323" parent="268" name="id">
-      <AutoIncrement>29</AutoIncrement>
+      <AutoIncrement>30</AutoIncrement>
       <Comment>id</Comment>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>

@@ -1,21 +1,22 @@
-package com.memory.usercenter.model.entity;
+package com.memory.usercenter.model.VO;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.memory.usercenter.model.DTO.common.CommonDTO;
+import com.memory.usercenter.model.entity.User;
 import lombok.Data;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 博文
- * @TableName article
+ * @author 邓哈哈
+ * 2023/9/18 13:19
+ * Function:
+ * Version 1.0
  */
 @Data
-@TableName(value ="article")
-public class Article implements Serializable {
+public class ArticleVO {
     /**
      * 文章id
      */
@@ -37,11 +38,6 @@ public class Article implements Serializable {
     private String content;
 
     /**
-     * 创作者
-     */
-    private Long authorId;
-
-    /**
      * 浏览量
      */
     private Integer view;
@@ -57,6 +53,11 @@ public class Article implements Serializable {
     private String comments;
 
     /**
+     * 作者信息
+     */
+    private User author;
+
+    /**
      * 创建时间
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
@@ -69,7 +70,7 @@ public class Article implements Serializable {
     private Date updateTime;
 
     /**
-     * 逻辑删除
+     * 是否删除
      */
     @TableLogic
     private Integer isDelete;

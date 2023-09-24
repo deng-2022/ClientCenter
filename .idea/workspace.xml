@@ -5,38 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b35a969-b326-48cb-b7cb-4fac97c8ff21" name="Changes" comment="随机匹配优化 页面标题优化 用户标签优化 退出队伍优化 搜索队伍优 化 加入队伍功能实现及优化 分页查询队伍优化 主页优化 定时查询任务优化 个人信息页 优化">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/VO/UserVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/VO/ArticleVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/300db0fa-c680-4161-9b66-8ae3327877eb.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/300db0fa-c680-4161-9b66-8ae3327877eb.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/common/WebSocketServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/common/WebSocketServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/constant/UserConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/constant/UserConstant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/ArticleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/ArticleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/ChatController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/FriendsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/FriendsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/TeamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/TeamController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/DTO/ArticleDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/DTO/artical/ArticleDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/DTO/CommonDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/DTO/common/CommonDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/DTO/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/entity/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/request/friends/FriendsAdd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/DTO/friends/FriendsAdd.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/request/team/TeamAdd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/DTO/team/TeamAdd.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/request/team/TeamDelete.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/DTO/team/TeamDelete.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/request/team/TeamJoin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/DTO/team/TeamJoin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/request/team/TeamList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/DTO/team/TeamList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/request/team/TeamQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/DTO/team/TeamQuery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/request/team/TeamQuit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/DTO/team/TeamQuit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/request/team/TeamUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/DTO/team/TeamUpdate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/request/user/UserLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/DTO/user/UserLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/request/user/UserRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/DTO/user/UserRegister.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/DTO/artical/ArticleDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/DTO/artical/ArticleDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/entity/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/entity/Article.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/ArticleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/ArticleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/ChatService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/ChatService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/FriendsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/FriendsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/TeamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/TeamService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/ArticleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/ArticleServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/ChatServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/ChatServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/FriendsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/FriendsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/TeamServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/TeamServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ArticleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ArticleMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/ArticleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/ArticleMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +71,7 @@
     <option name="skipTests" value="true" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="2Mdr5KSu3rSZKpwAYXYX88U9jcs" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -170,11 +149,11 @@
       <recent name="com.memory.usercenter.mapper" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.memory.usercenter.model.VO" />
       <recent name="com.memory.usercenter.controller" />
       <recent name="com.memory.usercenter.service.impl" />
       <recent name="com.memory.usercenter.service" />
       <recent name="com.memory.usercenter.config" />
-      <recent name="com.memory.usercenter.common" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -593,6 +572,20 @@
       <workItem from="1695012729594" duration="2890000" />
       <workItem from="1695031838031" duration="2065000" />
       <workItem from="1695092151382" duration="10566000" />
+      <workItem from="1695134437084" duration="2075000" />
+      <workItem from="1695172893820" duration="601000" />
+      <workItem from="1695197784646" duration="606000" />
+      <workItem from="1695215646919" duration="826000" />
+      <workItem from="1695266949265" duration="28000" />
+      <workItem from="1695282282585" duration="630000" />
+      <workItem from="1695308629100" duration="795000" />
+      <workItem from="1695351212327" duration="1211000" />
+      <workItem from="1695454057289" duration="1346000" />
+      <workItem from="1695469346601" duration="135000" />
+      <workItem from="1695524640246" duration="1529000" />
+      <workItem from="1695539868843" duration="2675000" />
+      <workItem from="1695553454557" duration="3665000" />
+      <workItem from="1695565970457" duration="1416000" />
     </task>
     <task id="LOCAL-00001" summary="redission实现分布式锁, 解决了多台服务器中, 只能由一台服务器成功抢到锁并缓存用户信息">
       <created>1681828259232</created>
