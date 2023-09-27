@@ -2,6 +2,7 @@ package com.memory.usercenter.controller;
 
 import com.memory.usercenter.common.BaseResponse;
 import com.memory.usercenter.common.ResultUtils;
+import com.memory.usercenter.model.VO.ChatVO;
 import com.memory.usercenter.model.entity.Message;
 import com.memory.usercenter.service.ChatService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,5 +38,19 @@ public class ChatController {
 
         List<Message> messageList = chatService.listMessage(senderId, receiverId, request);
         return ResultUtils.success(messageList);
+    }
+
+    /**
+     * 查看我的消息列表
+     *
+     * @param request request
+     * @return 好友列表
+     */
+    @GetMapping("/mes/one")
+    public BaseResponse<ChatVO> getChatMsgOne(Long senderId, Long receiverId, HttpServletRequest request) {
+        // controller对参数的校验
+
+        ChatVO megOne = chatService.getChatMsgOne(senderId, receiverId, request);
+        return ResultUtils.success(megOne);
     }
 }

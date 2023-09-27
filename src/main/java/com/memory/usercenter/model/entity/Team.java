@@ -63,6 +63,11 @@ public class Team implements Serializable {
     private String password;
 
     /**
+     * 队伍公告
+     */
+    private String announcement;
+
+    /**
      * 过期时间
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")

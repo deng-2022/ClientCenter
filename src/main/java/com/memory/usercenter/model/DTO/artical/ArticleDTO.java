@@ -50,4 +50,19 @@ public class ArticleDTO extends CommonDTO {
      * 创作者
      */
     private Long authorId;
+
+    /**
+     * 收藏量
+     */
+    private Integer collects;
+
+    /**
+     * 封面图片
+     */
+    private String articleUrl;
+
+    /**
+     * 文章标签
+     */
+    private String tags;
 }

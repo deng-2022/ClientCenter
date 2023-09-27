@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.memory.usercenter.common.ErrorCode;
 import com.memory.usercenter.constant.TeamStatusEnum;
 import com.memory.usercenter.exception.BusinessException;
+import com.memory.usercenter.model.DTO.announcement.AddAnnouncement;
 import com.memory.usercenter.model.DTO.team.*;
 import com.memory.usercenter.model.VO.TeamVO;
 import com.memory.usercenter.model.entity.Team;
@@ -627,6 +628,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
             teamVO.setCreateTime(team.getCreateTime());
             teamVO.setUpdateTime(team.getUpdateTime());
             teamVO.setIsDelete(team.getIsDelete());
+            teamVO.setAnnouncement(team.getAnnouncement());
 
             return teamVO;
         }).collect(Collectors.toList());
@@ -708,6 +710,32 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
     public User getLoginUser(HttpServletRequest request) {
         User loginUser = (User) request.getSession().getAttribute(USER_LOGIN_STATE);
         return getSafetyUser(loginUser);
+    }
+
+    /**
+     * 更新公告
+     *
+     * @param addAnnouncement
+     * @param request
+     * @return
+     */
+    @Override
+    public Boolean updateAnnouncement(AddAnnouncement addAnnouncement, HttpServletRequest request) {
+        Long userId = addAnnouncement.getUserId();
+        Long teamId = addAnnouncement.getTeamId();
+        String announcement = addAnnouncement.getAnnouncement();
+
+        if (!getById(teamId).getUserId().equals(userId))
+            throw new BusinessException(ErrorCode.NO_AUTH, "非队长不能更新公告内容");
+
+        UpdateWrapper<Team> tuw = new UpdateWrapper<>();
+        tuw.eq("id",teamId).set("announcement", announcement);
+        boolean update = update(tuw);
+
+        if (!update)
+            throw new BusinessException(ErrorCode.UPDATE_ERROR, "更新公告内容失败");
+
+        return true;
     }
 }
 

@@ -5,17 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b35a969-b326-48cb-b7cb-4fac97c8ff21" name="Changes" comment="随机匹配优化 页面标题优化 用户标签优化 退出队伍优化 搜索队伍优 化 加入队伍功能实现及优化 分页查询队伍优化 主页优化 定时查询任务优化 个人信息页 优化">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/VO/ArticleVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/DTO/announcement/AddAnnouncement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/VO/ChatVO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/300db0fa-c680-4161-9b66-8ae3327877eb.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/300db0fa-c680-4161-9b66-8ae3327877eb.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/mybatisx/templates.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mybatisx/templates.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/ArticleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/ArticleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/ChatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/TeamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/controller/TeamController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/DTO/artical/ArticleDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/DTO/artical/ArticleDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/VO/ArticleVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/VO/ArticleVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/VO/TeamVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/VO/TeamVO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/entity/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/entity/Article.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/ArticleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/ArticleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/entity/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/entity/Team.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/model/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/ChatService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/ChatService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/TeamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/TeamService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/ArticleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/ArticleServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/ChatServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/ChatServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/TeamServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/memory/usercenter/service/impl/TeamServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ArticleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ArticleMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/TeamMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/TeamMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/ArticleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/ArticleMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/TeamMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/TeamMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/UserMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,11 +162,11 @@
       <recent name="com.memory.usercenter.mapper" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.memory.usercenter.model.DTO.team" />
       <recent name="com.memory.usercenter.model.VO" />
       <recent name="com.memory.usercenter.controller" />
       <recent name="com.memory.usercenter.service.impl" />
       <recent name="com.memory.usercenter.service" />
-      <recent name="com.memory.usercenter.config" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -165,6 +178,11 @@
     <option name="openRunningConfigInTab" value="true" />
   </component>
   <component name="RunManager" selected="Spring Boot.UserCenterApplication">
+    <configuration name="team.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
+      <script-file value="300db0fa-c680-4161-9b66-8ae3327877eb/schema/memory/table/team.sql" />
+      <script-mode>FILE</script-mode>
+      <method v="2" />
+    </configuration>
     <configuration name="PicMemoriesApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="PicMemories" />
       <extension name="coverage">
@@ -233,23 +251,6 @@
         <option name="com.soywiz.korge.intellij.UpdateResourceBeforeRunTask" enabled="false" />
       </method>
     </configuration>
-    <configuration name="WallpaperServiceImplTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="PicMemories" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.memory.picmemories.service.impl.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.memory.picmemories.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="com.memory.picmemories.service.impl.WallpaperServiceImplTest" />
-      <option name="METHOD_NAME" value="test" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-        <option name="com.soywiz.korge.intellij.UpdateResourceBeforeRunTask" enabled="false" />
-      </method>
-    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="Lambda" />
       <method v="2">
@@ -301,22 +302,22 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Database Script.team.sql" />
       <item itemvalue="JUnit.RedisTest.test1" />
       <item itemvalue="JUnit.UserServiceImplTest.loginTest" />
       <item itemvalue="JUnit.PicMemoriesApplicationTests.contextLoads" />
       <item itemvalue="JUnit.PicMemoriesApplicationTests.test" />
-      <item itemvalue="JUnit.WallpaperServiceImplTest.test" />
       <item itemvalue="Spring Boot.UserCenterApplication" />
       <item itemvalue="Spring Boot.DemoApplication" />
       <item itemvalue="Spring Boot.PicMemoriesApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Database Script.team.sql" />
         <item itemvalue="JUnit.RedisTest.test1" />
         <item itemvalue="JUnit.UserServiceImplTest.loginTest" />
         <item itemvalue="JUnit.PicMemoriesApplicationTests.test" />
         <item itemvalue="JUnit.PicMemoriesApplicationTests.contextLoads" />
-        <item itemvalue="JUnit.WallpaperServiceImplTest.test" />
       </list>
     </recent_temporary>
   </component>
@@ -586,6 +587,14 @@
       <workItem from="1695539868843" duration="2675000" />
       <workItem from="1695553454557" duration="3665000" />
       <workItem from="1695565970457" duration="1416000" />
+      <workItem from="1695603997022" duration="1116000" />
+      <workItem from="1695614363980" duration="3157000" />
+      <workItem from="1695640218706" duration="20000" />
+      <workItem from="1695715021864" duration="2991000" />
+      <workItem from="1695731631077" duration="1314000" />
+      <workItem from="1695783633162" duration="3644000" />
+      <workItem from="1695795458752" duration="36000" />
+      <workItem from="1695828231643" duration="1967000" />
     </task>
     <task id="LOCAL-00001" summary="redission实现分布式锁, 解决了多台服务器中, 只能由一台服务器成功抢到锁并缓存用户信息">
       <created>1681828259232</created>

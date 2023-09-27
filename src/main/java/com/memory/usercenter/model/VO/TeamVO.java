@@ -58,6 +58,11 @@ public class TeamVO {
      */
     private Integer status;
 
+    /**
+     * 队伍公告
+     */
+    private String announcement;
+
 
     /**
      * 过期时间

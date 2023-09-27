@@ -90,8 +90,11 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>
             articleVO.setContent(article.getContent());
             articleVO.setView(article.getView());
             articleVO.setLikes(article.getLikes());
+            articleVO.setCollects(article.getCollects());
             articleVO.setComments(article.getComments());
             articleVO.setAuthor(author);
+            articleVO.setArticleUrl(article.getArticleUrl());
+            articleVO.setTags(article.getTags());
             articleVO.setCreateTime(article.getCreateTime());
             articleVO.setUpdateTime(article.getUpdateTime());
 
@@ -117,8 +120,11 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>
         articleVO.setContent(article.getContent());
         articleVO.setView(article.getView());
         articleVO.setLikes(article.getLikes());
+        articleVO.setCollects(article.getCollects());
         articleVO.setComments(article.getComments());
         articleVO.setAuthor(author);
+        articleVO.setArticleUrl(article.getArticleUrl());
+        articleVO.setTags(article.getTags());
         articleVO.setCreateTime(article.getCreateTime());
         articleVO.setUpdateTime(article.getUpdateTime());
 

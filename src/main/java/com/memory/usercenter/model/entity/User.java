@@ -105,6 +105,21 @@ public class User implements Serializable {
      */
     private String profile;
 
+    /**
+     * 文章数量
+     */
+    private Integer articleNum;
+
+    /**
+     * 粉丝数
+     */
+    private Integer fans;
+
+    /**
+     * 获赞数
+     */
+    private Integer likes;
+
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

@@ -2,8 +2,11 @@ package com.memory.usercenter.service.impl;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.memory.usercenter.model.VO.ChatVO;
 import com.memory.usercenter.model.entity.Message;
+import com.memory.usercenter.model.entity.User;
 import com.memory.usercenter.service.ChatService;
+import com.memory.usercenter.service.UserService;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +24,8 @@ import static com.memory.usercenter.constant.UserConstant.USER_CHAT_MESSAGE;
 public class ChatServiceImpl implements ChatService {
     @Resource
     private RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
+    @Resource
+    private UserService userService;
 
 
     /**
@@ -85,6 +90,31 @@ public class ChatServiceImpl implements ChatService {
         }
 
         return messageList;
+    }
+
+
+    /**
+     * 收发双方详细信息
+     *
+     * @param senderId   发送者id
+     * @param receiverId 接收者id
+     * @param request    request
+     * @return 收发双方详细信息
+     */
+    @Override
+    public ChatVO getChatMsgOne(Long senderId, Long receiverId, HttpServletRequest request) {
+        // 获取收发双方信息
+        User sender = userService.getById(senderId);
+        User receiver = userService.getById(receiverId);
+        // 组装
+        ChatVO chatVO = new ChatVO();
+        chatVO.setUsernameSen(sender.getUsername());
+        chatVO.setAvatarUrlSen(sender.getAvatarUrl());
+
+        chatVO.setUsernameRec(receiver.getUsername());
+        chatVO.setAvatarUrlRec(receiver.getAvatarUrl());
+        //返回
+        return chatVO;
     }
 }
 

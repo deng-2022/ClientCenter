@@ -1,5 +1,6 @@
 package com.memory.usercenter.service;
 
+import com.memory.usercenter.model.VO.ChatVO;
 import com.memory.usercenter.model.entity.Message;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,4 +11,5 @@ import java.util.List;
  */
 public interface ChatService {
     List<Message> listMessage(Long senderId, Long receiverId, HttpServletRequest request);
+    ChatVO getChatMsgOne(Long senderId, Long receiverId, HttpServletRequest request);
 }

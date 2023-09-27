@@ -1,6 +1,7 @@
 package com.memory.usercenter.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.memory.usercenter.model.DTO.announcement.AddAnnouncement;
 import com.memory.usercenter.model.DTO.team.*;
 import com.memory.usercenter.model.VO.TeamVO;
 import com.memory.usercenter.model.entity.Team;
@@ -99,5 +100,14 @@ public interface TeamService extends IService<Team> {
     Boolean isAdmin(User loginUser);
 
     User getLoginUser(HttpServletRequest request);
+
+    /**
+     * 更新公告
+     *
+     * @param announcement
+     * @param request
+     * @return
+     */
+    Boolean updateAnnouncement(AddAnnouncement announcement, HttpServletRequest request);
 
 }

@@ -57,6 +57,21 @@ public class Article implements Serializable {
     private String comments;
 
     /**
+     * 收藏量
+     */
+    private Integer collects;
+
+    /**
+     * 封面图片
+     */
+    private String articleUrl;
+
+    /**
+     * 文章标签
+     */
+    private String tags;
+
+    /**
      * 创建时间
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")

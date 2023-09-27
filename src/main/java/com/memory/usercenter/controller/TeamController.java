@@ -5,10 +5,12 @@ import com.memory.usercenter.common.BaseResponse;
 import com.memory.usercenter.common.ErrorCode;
 import com.memory.usercenter.common.ResultUtils;
 import com.memory.usercenter.exception.BusinessException;
+import com.memory.usercenter.model.DTO.announcement.AddAnnouncement;
 import com.memory.usercenter.model.DTO.team.*;
 import com.memory.usercenter.model.VO.TeamVO;
 import com.memory.usercenter.model.entity.Team;
 import com.memory.usercenter.service.TeamService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -196,4 +198,28 @@ public class TeamController {
         Page<TeamVO> createdTeam = teamService.getCreatedTeam(loginUserId, request);
         return ResultUtils.success(createdTeam);
     }
+
+    /**
+     * 修改公告
+     *
+     * @param addAnnouncement 用户id
+     * @return 已创建队伍信息
+     */
+    @PostMapping("/update/announcement")
+    public BaseResponse<Boolean> updateAnnouncement(@RequestBody AddAnnouncement addAnnouncement, HttpServletRequest request) {
+        // controller对参数的校验
+        if (addAnnouncement == null) {
+            throw new BusinessException(ErrorCode.PARMS_ERROR);
+        }
+        Long userId = addAnnouncement.getUserId();
+        Long teamId = addAnnouncement.getTeamId();
+        String announcement = addAnnouncement.getAnnouncement();
+        if (userId == null || teamId == null || StringUtils.isAnyBlank(announcement))
+            throw new BusinessException(ErrorCode.PARMS_ERROR);
+
+        Boolean updateAnnouncement = teamService.updateAnnouncement(addAnnouncement, request);
+        return ResultUtils.success(updateAnnouncement);
+    }
+
+
 }
