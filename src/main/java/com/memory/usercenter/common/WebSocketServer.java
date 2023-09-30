@@ -185,7 +185,7 @@ public class WebSocketServer {
             opsForHash.put(senderMsgKey, generateMessageId(), message);
             opsForHash.put(receiverMsgKey, generateMessageId(), message);
             // 3.3.设置键的过期时间，单位为h
-            long expireTime = 2; // 设置为2hour
+            long expireTime = 48; // 设置为48hour
             redisTemplate.expire(senderMsgKey, expireTime, TimeUnit.HOURS);
             redisTemplate.expire(receiverMsgKey, expireTime, TimeUnit.HOURS);
         } catch (Exception e) {

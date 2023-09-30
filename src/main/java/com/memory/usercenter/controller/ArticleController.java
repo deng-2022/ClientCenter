@@ -55,4 +55,34 @@ public class ArticleController {
         ArticleVO articleVO = articleService.getArticle(articleDTO, request);
         return ResultUtils.success(articleVO);
     }
+
+    /**
+     * 点赞博文
+     *
+     * @param articleDTO
+     * @param request
+     * @return
+     */
+    @GetMapping("/like")
+    public BaseResponse<ArticleVO> likeArticle (ArticleDTO articleDTO, HttpServletRequest request) {
+        // controller对参数的校验
+
+         articleService.likeArticle( );
+        return ResultUtils.success(null);
+    }
+
+    /**
+     * 收藏博文
+     *
+     * @param articleDTO
+     * @param request
+     * @return
+     */
+    @GetMapping("/collect")
+    public BaseResponse<ArticleVO> collectArticle(ArticleDTO articleDTO, HttpServletRequest request) {
+        // controller对参数的校验
+
+         articleService.collectArticle( );
+        return ResultUtils.success(null);
+    }
 }

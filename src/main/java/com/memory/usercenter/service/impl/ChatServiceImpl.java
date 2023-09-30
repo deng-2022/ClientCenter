@@ -3,7 +3,10 @@ package com.memory.usercenter.service.impl;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.memory.usercenter.model.VO.ChatVO;
+import com.memory.usercenter.model.VO.MessageVO;
+import com.memory.usercenter.model.VO.TeamVO;
 import com.memory.usercenter.model.entity.Message;
+import com.memory.usercenter.model.entity.Team;
 import com.memory.usercenter.model.entity.User;
 import com.memory.usercenter.service.ChatService;
 import com.memory.usercenter.service.UserService;
@@ -14,6 +17,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static com.memory.usercenter.constant.UserConstant.USER_CHAT_MESSAGE;
 
@@ -37,25 +41,24 @@ public class ChatServiceImpl implements ChatService {
      * @return 聊天记录
      */
     @Override
-    public List<Message> listMessage(Long senderId, Long receiverId, HttpServletRequest request) {
-
-        List<Message> message1 = getMessage(senderId, receiverId);
-
-        List<Message> message2 = getMessage(receiverId, senderId);
-
-        List<Message> messageList = new ArrayList<>();
-        messageList.addAll(message1);
-        messageList.addAll(message2);
+    public List<MessageVO> listMessage(Long senderId, Long receiverId, HttpServletRequest request) {
+        // 1.获取各自发送给对方的的消息记录
+        List<MessageVO> messageVO1 = getMessage(senderId, receiverId);
+        List<MessageVO> messageVO2 = getMessage(receiverId, senderId);
+        // 2.合并双方消息记录
+        List<MessageVO> messageVOList = new ArrayList<>();
+        messageVOList.addAll(messageVO1);
+        messageVOList.addAll(messageVO2);
 
         // 3.按发送时间sendTime, 排列
-        messageList.sort(new Comparator<Message>() {
+        messageVOList.sort(new Comparator<MessageVO>() {
             @Override
-            public int compare(Message o1, Message o2) {
+            public int compare(MessageVO o1, MessageVO o2) {
                 return o1.getSendTime().compareTo(o2.getSendTime());
             }
         });
 
-        return messageList;
+        return messageVOList;
     }
 
     /**
@@ -65,7 +68,7 @@ public class ChatServiceImpl implements ChatService {
      * @param receiverId 接收者
      * @return 聊天记录
      */
-    public List<Message> getMessage(Long senderId, Long receiverId) {
+    public List<MessageVO> getMessage(Long senderId, Long receiverId) {
         Map<Object, Object> mesEntriesJson = redisTemplate.opsForHash().entries(USER_CHAT_MESSAGE + senderId);
 
         Gson gson = new Gson();
@@ -89,7 +92,7 @@ public class ChatServiceImpl implements ChatService {
             }
         }
 
-        return messageList;
+        return  getMessageVOByMessage(messageList);
     }
 
 
@@ -115,6 +118,29 @@ public class ChatServiceImpl implements ChatService {
         chatVO.setAvatarUrlRec(receiver.getAvatarUrl());
         //返回
         return chatVO;
+    }
+
+    /**
+     * 转换 messageList 为 MessageVOList
+     *
+     * @param messageList messageList
+     * @return MessageVO
+     */
+    public List<MessageVO> getMessageVOByMessage(List<Message> messageList) {
+        return messageList.stream().map(message -> {
+            Long senderId = message.getSenderId();
+            User user = userService.getById(senderId);
+
+            MessageVO messageVO = new MessageVO();
+            messageVO.setSenderId(message.getSenderId());
+            messageVO.setReceiverId(message.getReceiverId());
+            messageVO.setContent(message.getContent());
+            messageVO.setSendTime(message.getSendTime());
+            messageVO.setUsername(user.getUsername());
+            messageVO.setAvatarUrl(user.getAvatarUrl());
+
+            return messageVO;
+        }).collect(Collectors.toList());
     }
 }
 

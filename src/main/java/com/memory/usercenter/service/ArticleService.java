@@ -32,4 +32,8 @@ public interface ArticleService extends IService<Article> {
      * @return
      */
     ArticleVO getArticle(ArticleDTO articleDTO, HttpServletRequest request);
+
+    void likeArticle();
+    void collectArticle();
+
 }

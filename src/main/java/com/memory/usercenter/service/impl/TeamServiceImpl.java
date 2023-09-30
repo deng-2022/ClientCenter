@@ -605,13 +605,13 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
     }
 
     /**
-     * 转换teamList为teamVOList
+     * 转换 teamList为 teamVOList
      *
      * @param teamList teamList
      * @return teamVOList
      */
     public List<TeamVO> getTeamVOByTeam(List<Team> teamList) {
-        List<TeamVO> teamVOList = teamList.stream().map(team -> {
+        return teamList.stream().map(team -> {
             Long userId = team.getUserId();
             String userName = userService.getById(userId).getUsername();
             TeamVO teamVO = new TeamVO();
@@ -632,8 +632,6 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
 
             return teamVO;
         }).collect(Collectors.toList());
-
-        return teamVOList;
     }
 
     /**

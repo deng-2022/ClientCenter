@@ -72,6 +72,22 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>
     }
 
     /**
+     * 点赞博文
+     */
+    @Override
+    public void likeArticle() {
+
+    }
+
+    /**
+     * 收藏博文
+     */
+    @Override
+    public void collectArticle() {
+
+    }
+
+    /**
      * 转换articleList 为 articleVOList
      *
      * @param articleList articleList
